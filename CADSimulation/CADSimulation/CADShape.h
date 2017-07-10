@@ -1,5 +1,5 @@
 #pragma once
-class CCADShape
+class CCADShape : public CObject
 {
 public:
   CCADShape();
@@ -23,7 +23,7 @@ protected:
   COLORREF  m_nPenColorSwitch;
   COLORREF  m_nBrushColorSwitch;
 
-  //bool m_bIsStyleSet;
+  bool m_bIsSavable;
 
   static CDC *m_pStaticDCMem;
   static CBitmap *m_pStaticBitmap;
@@ -45,5 +45,8 @@ public:
   int SetBrush(COLORREF color);
   int SetPen(int PenWidth, int PenStyle, COLORREF PenColor);
   int SetRotation(int nRotation);
+
+  void Serialize(CArchive& archive);
+
 };
 

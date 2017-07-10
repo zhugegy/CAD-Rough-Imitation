@@ -51,6 +51,7 @@ CCADSimulationApp::CCADSimulationApp()
   m_nPenWidth = 1;
   m_nPenStyle = PS_SOLID;
   m_nPenColor = RGB(0, 0, 0);
+
   m_nBrushColor = RGB(255, 255, 255);
 
   memset(m_aryCustomizedShapePoints, 0, sizeof(m_aryCustomizedShapePoints));

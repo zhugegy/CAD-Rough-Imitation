@@ -48,7 +48,9 @@ CDC * CCADShapeSelection::Draw(HWND hWnd, CDC * pDC)
 
 int CCADShapeSelection::SaveThisShape(CPoint & objPoint)
 {
-  //不保存此图形，而是进行其他事情（寻找被用户拿出的图形）
+  CCADShape::SaveThisShape(objPoint);
+  
+  //进行其他事情（寻找被用户拿出的图形）
   FindSelectedShapes();
 
   return 0;

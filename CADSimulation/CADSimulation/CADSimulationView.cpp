@@ -165,6 +165,7 @@ void CCADSimulationView::OnMouseMove(UINT nFlags, CPoint point)
     InvalidateRect(NULL, FALSE);
   }
 
+
   CView::OnMouseMove(nFlags, point);
 }
 

@@ -38,13 +38,6 @@ CDC * CCADShapeDrag::Draw(HWND hWnd, CDC * pDC)
   return 0;
 }
 
-int CCADShapeDrag::SaveThisShape(CPoint & objPoint)
-{
-  //不保存此图形
-
-  return 0;
-}
-
 int CCADShapeDrag::SetBeginPoint(CPoint & objBeginPoint)
 {
   CCADShape::SetBeginPoint(objBeginPoint);

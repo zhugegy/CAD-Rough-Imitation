@@ -1,9 +1,12 @@
 #include "stdafx.h"
 #include "CADShapeRect.h"
 
+IMPLEMENT_SERIAL(CCADShapeRect, CObject, 1)
 
 CCADShapeRect::CCADShapeRect()
 {
+  m_bIsSavable = true;
+
 }
 
 
@@ -82,4 +85,21 @@ CDC * CCADShapeRect::Draw(HWND hWnd, CDC * pDC)
   }
 
   return 0;
+}
+
+void CCADShapeRect::Serialize(CArchive& archive)
+{
+  // call base class function first
+  // base class is CObject in this case
+  CCADShape::Serialize(archive);
+
+  // now do the stuff for our specific class
+  if (archive.IsStoring())
+  {
+
+  }
+  else
+  {
+
+  }
 }

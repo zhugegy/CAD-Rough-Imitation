@@ -1,9 +1,12 @@
 #include "stdafx.h"
 #include "CADShapeEllipse.h"
 
+IMPLEMENT_SERIAL(CCADShapeEllipse, CObject, 1)
 
 CCADShapeEllipse::CCADShapeEllipse()
 {
+  m_bIsSavable = true;
+
 }
 
 
@@ -78,4 +81,21 @@ CDC * CCADShapeEllipse::Draw(HWND hWnd, CDC * pDC)
   }
 
   return 0;
+}
+
+void CCADShapeEllipse::Serialize(CArchive& archive)
+{
+  // call base class function first
+  // base class is CObject in this case
+  CCADShape::Serialize(archive);
+
+  // now do the stuff for our specific class
+  if (archive.IsStoring())
+  {
+    
+  }
+  else
+  {
+  
+  }
 }

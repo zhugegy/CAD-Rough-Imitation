@@ -25,6 +25,7 @@ CCADShape::CCADShape()
   m_nBrushColorSwitch = theApp.m_nBrushColor;
 
   m_nRotation = 0;
+  m_bIsSavable = false;
 }
 
 
@@ -51,17 +52,27 @@ int CCADShape::SetEndPoint(CPoint & objEndPoint)
 
 CDC * CCADShape::Draw(HWND hWnd, CDC * pDC)
 {
+  CDC *pMemDC = GetMemDC(hWnd, pDC);
+
+  //如果不是画背景的话，就把自己
+  if (m_bIsDrawingBackground == false)
+  {
+    CRect rcClient;
+    GetClientRect(hWnd, &rcClient);
+    pDC->BitBlt(0, 0, rcClient.Width(), rcClient.Height(), pMemDC, 0, 0, SRCCOPY);
+  }
+
   return NULL;
 }
 
 int CCADShape::SaveThisShape(CPoint & objPoint)
 {
-  //m_objEndPoint = objPoint;
-  //m_bIsStyleSet = true;
+  if (m_bIsSavable == true)
+  {
+    CCADStorage *pStorage = GET_SINGLE(CCADStorage);
 
-  CCADStorage *pStorage = GET_SINGLE(CCADStorage);
-
-  (pStorage->m_lstShapes).AddTail(this);
+    (pStorage->m_lstShapes).AddTail(this);
+  }
 
   return 0;
 }
@@ -214,4 +225,23 @@ int CCADShape::SetRotation(int nRotation)
   m_nRotation = nRotation;
 
   return 0;
+}
+
+void CCADShape::Serialize(CArchive& archive)
+{
+  // call base class function first
+  // base class is CObject in this case
+  CObject::Serialize(archive);
+
+  // now do the stuff for our specific class
+  if (archive.IsStoring())
+  {
+    archive << m_objBeginPoint << m_objEndPoint << m_nRotation << m_nPenWidth
+      << m_nPenStyle << m_nPenColor << m_nBrushColor;
+  }
+  else
+  {
+    archive >> m_objBeginPoint >> m_objEndPoint >> m_nRotation >> m_nPenWidth
+      >> m_nPenStyle >> m_nPenColor >> m_nBrushColor;
+  }
 }

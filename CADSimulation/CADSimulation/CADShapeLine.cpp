@@ -1,8 +1,12 @@
 #include "stdafx.h"
 #include "CADShapeLine.h"
 
+IMPLEMENT_SERIAL(CCADShapeLine, CObject, 1)
+
+
 CCADShapeLine::CCADShapeLine()
 {
+  m_bIsSavable = true;
 }
 
 
@@ -206,4 +210,21 @@ BOOL CCADShapeLine::IsSelected(LPRECT pUserRect)
   rgnBuffer.CreatePolygonRgn(rgnPoints, 4, WINDING);
 
   return rgnBuffer.RectInRegion(pUserRect);
+}
+
+void CCADShapeLine::Serialize(CArchive& archive)
+{
+  // call base class function first
+  // base class is CObject in this case
+  CCADShape::Serialize(archive);
+
+  // now do the stuff for our specific class
+  if (archive.IsStoring())
+  {
+
+  }
+  else
+  {
+
+  }
 }

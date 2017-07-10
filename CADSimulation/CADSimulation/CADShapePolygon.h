@@ -3,6 +3,8 @@
 class CCADShapePolygon :
   public CCADShape
 {
+  DECLARE_SERIAL(CCADShapePolygon)
+
 public:
   CCADShapePolygon();
   virtual ~CCADShapePolygon();
@@ -11,6 +13,7 @@ public:
   /*==virtual==*/ BOOL IsSelected(LPRECT pUserRect);
   /*==virtual==*/ int WhenDragged(int nCoordXOffset, int nCoordYOffset);
   /*==virtual==*/ int BeforeBeingDragged();
+  void Serialize(CArchive& archive);
 
 public:
   int m_nPointCount;

@@ -17,6 +17,9 @@
 #define new DEBUG_NEW
 #endif
 
+#include "CADStorage.h"
+#include "GYSingleInstanceMacro.h"
+
 // CCADSimulationDoc
 
 IMPLEMENT_DYNCREATE(CCADSimulationDoc, CDocument)
@@ -52,17 +55,39 @@ BOOL CCADSimulationDoc::OnNewDocument()
 
 
 // CCADSimulationDoc serialization
-
 void CCADSimulationDoc::Serialize(CArchive& ar)
 {
+  CCADStorage *pStorage = GET_SINGLE(CCADStorage);
+
 	if (ar.IsStoring())
 	{
 		// TODO: add storing code here
+    ar << (pStorage->m_lstShapes).GetCount();
+
+    //遍历链表,依次保存每个对象
+    POSITION pos = (pStorage->m_lstShapes).GetHeadPosition();
+    while (pos)
+    {
+      CCADShape* pShape = (pStorage->m_lstShapes).GetNext(pos);
+      ar << pShape;
+    }
+
 	}
 	else
 	{
 		// TODO: add loading code here
+    int nCnt = 0;
+    ar >> nCnt;
+
+    CObject* pObj = NULL;
+    while (nCnt--)
+    {
+      ar >> pObj;
+      (pStorage->m_lstShapes).AddTail((CCADShape*)pObj);
+    }
+
 	}
+
 }
 
 #ifdef SHARED_HANDLERS
@@ -133,5 +158,3 @@ void CCADSimulationDoc::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
-
-// CCADSimulationDoc commands

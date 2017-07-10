@@ -3,8 +3,13 @@
 
 #include "CADCutomizeShape.h"
 
+IMPLEMENT_SERIAL(CCADShapePolygon, CObject, 1)
+
+
 CCADShapePolygon::CCADShapePolygon()
 {
+  m_bIsSavable = true;
+
 }
 
 
@@ -139,4 +144,32 @@ int CCADShapePolygon::BeforeBeingDragged()
   }
 
   return 0;
+}
+
+
+void CCADShapePolygon::Serialize(CArchive& archive)
+{
+  // call base class function first
+  // base class is CObject in this case
+  CCADShape::Serialize(archive);
+
+  // now do the stuff for our specific class
+  if (archive.IsStoring())
+  {
+    archive << m_nPointCount;
+
+    for (int i = 0; i < 10; i++)
+    {
+      archive << m_aryPoints[i] << m_aryTransferedPoints[i];
+    }
+  }
+  else
+  {
+    archive >> m_nPointCount;
+
+    for (int i = 0; i < 10; i++)
+    {
+      archive >> m_aryPoints[i] >> m_aryTransferedPoints[i];
+    }
+  }
 }
