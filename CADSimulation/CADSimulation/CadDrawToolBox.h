@@ -1,5 +1,6 @@
 #pragma once
 #include "afxcmn.h"
+#include "afxwin.h"
 
 
 // CCadDrawToolBox dialog
@@ -39,4 +40,12 @@ public:
   int RotateTheShape();
   afx_msg void OnBnClickedButtonDrawToolBoxRotateRight();
   int m_nShapeRotation;
+  afx_msg void OnBnClickedButtonDrawToolBoxCustomizedShapeSave();
+  afx_msg void OnBnClickedButtonDrawToolBoxCustomizedShapeLoad();
+private:
+
+public:
+  CComboBox m_ctlComboSelectCustomizedShape;
+  afx_msg void OnSelchangeComboDrawToolBoxSelectCustomizedShape();
+  afx_msg void OnBnClickedButtonDrawToolBoxPencil();
 };

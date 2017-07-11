@@ -69,6 +69,7 @@ CDC * CCADShapeLine::Draw(HWND hWnd, CDC * pDC)
 
   return 0;
 }
+
 /*
        0----------->X
        |

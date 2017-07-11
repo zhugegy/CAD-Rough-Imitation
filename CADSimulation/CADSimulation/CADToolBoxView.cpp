@@ -67,7 +67,6 @@ int CCADToolBoxView::OnCreate(LPCREATESTRUCT lpCreateStruct)
   //m_pToolBoxDlg->MoveWindow(&m_rcToolBoxDlg);
   m_pToolBoxDlg->ShowWindow(SW_SHOW);
 
-
   return 0;
 }
 

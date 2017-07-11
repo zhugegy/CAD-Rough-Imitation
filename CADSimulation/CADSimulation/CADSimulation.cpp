@@ -68,8 +68,12 @@ CCADSimulationApp theApp;
 
 // CCADSimulationApp initialization
 
+#pragma comment(lib, "SkinPPWTL.lib")
+
 BOOL CCADSimulationApp::InitInstance()
 {
+  skinppLoadSkin(_T("Devoir.ssk"));//blue.ssk为项目下的皮肤文件
+
 	// InitCommonControlsEx() is required on Windows XP if an application
 	// manifest specifies use of ComCtl32.dll version 6 or later to enable
 	// visual styles.  Otherwise, any window creation will fail.
@@ -199,6 +203,65 @@ CString * CCADSimulationApp::GetLastShapeName()
 int CCADSimulationApp::SetLastShapeName(CWnd * pShapeButton)
 {
   pShapeButton->GetWindowText(m_strLastShapeName);
+
+  return 0;
+}
+
+
+int CCADSimulationApp::SaveCustomizedShapeToFile(CString &strFileName)
+{
+  //   ::CreateFile(strFileName,//文件名
+  //     GENERIC_READ | GENERIC_WRITE,
+  //     FILE_SHARE_READ | FILE_SHARE_WRITE,
+  //     NULL,
+  //     CREATE_ALWAYS,
+  //     FILE_ATTRIBUTE_NORMAL,
+  //     NULL);
+  // 
+  //   
+  // 
+  //   std::ofstream save;
+  // 
+  //   save.open(strFileName, std::ios::out|| std::ios::binary);
+  // 
+  //   for (int i = 0; i < CUSTOMIZE_SHAPE_MAX_POINTS; i++)
+  //   {
+  //     save << theApp.m_aryCustomizedShapePoints[i].x;
+  //     save << theApp.m_aryCustomizedShapePoints[i].y;
+  //   }
+  // 
+  //   save << theApp.m_nCustomiezedShapePointCount;
+  FILE *pFile = fopen((const char *)strFileName.GetBuffer(0), "w");
+
+  fprintf(pFile, "%d\r\n", theApp.m_nCustomiezedShapePointCount);
+
+  for (int i = 0; i < CUSTOMIZE_SHAPE_MAX_POINTS; i++)
+  {
+    fseek(pFile, 0, SEEK_END);
+    fprintf(pFile, "%d %d\r\n", theApp.m_aryCustomizedShapePoints[i].x,
+      theApp.m_aryCustomizedShapePoints[i].y);
+  }
+
+  fflush(pFile);
+
+  fclose(pFile);
+
+  return 0;
+}
+
+int CCADSimulationApp::LoadCustomizedShapeFromFile(CString &strFileName)
+{
+  FILE *pFile = fopen((const char *)strFileName.GetBuffer(0), "r");
+
+  fscanf(pFile, "%d\r\n", &theApp.m_nCustomiezedShapePointCount);
+
+  for (int i = 0; i < CUSTOMIZE_SHAPE_MAX_POINTS; i++)
+  {
+    fscanf(pFile, "%d %d\r\n", &(theApp.m_aryCustomizedShapePoints[i].x),
+      &(theApp.m_aryCustomizedShapePoints[i].y));
+  }
+
+  fclose(pFile);
 
   return 0;
 }

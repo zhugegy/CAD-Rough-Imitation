@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "DrawContext.h"
 
+#include "CADShapePencil.h"
 #include "CADShapeLine.h"
 #include "CADShapeRect.h"
 #include "CADShapeEllipse.h"
@@ -41,6 +42,11 @@ CDrawContext::~CDrawContext()
 
 int CDrawContext::SetShape()
 {
+  if (*(theApp.GetLastShapeName()) == _T("铅笔"))
+  {
+    m_pobjCurrentShape = new CCADShapePencil;
+  }
+
   if (*(theApp.GetLastShapeName()) == _T("直线"))
   {
     m_pobjCurrentShape = new CCADShapeLine;
@@ -74,7 +80,7 @@ int CDrawContext::SetShape()
     m_pobjCurrentShape = new CCADShapeSelection;
   }
 
-  if (*(theApp.GetLastShapeName()) == _T("取消当前选择"))
+  if (*(theApp.GetLastShapeName()) == _T("取消"))
   {
     m_pobjCurrentShape = new CCADShape;
     //m_pobjCurrentShape = new CCADShapeLine;

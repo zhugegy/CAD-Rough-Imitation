@@ -15,6 +15,7 @@
 
 #include "CADShape.h"
 #include "CADSimulationView.h"
+#include "CADCutomizeShape.h"
 
 class CCADSimulationApp : public CWinAppEx
 {
@@ -40,12 +41,16 @@ public:
   COLORREF  m_nPenColor;
   COLORREF  m_nBrushColor;
 
-  POINT m_aryCustomizedShapePoints[10];
+  POINT m_aryCustomizedShapePoints[CUSTOMIZE_SHAPE_MAX_POINTS];
   int m_nCustomiezedShapePointCount;
 
   CList<CCADShape *, CCADShape *> m_lstSelectedShapes;
 
   CCADSimulationView *m_pView;
+  int SaveCustomizedShapeToFile(CString &strFileName);
+  int LoadCustomizedShapeFromFile(CString &strFileName);
+
+
 
 private:
   CString m_strLastShapeName;

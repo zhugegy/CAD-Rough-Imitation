@@ -87,6 +87,9 @@
     <ClInclude Include="CADShapeDrag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CADShapePencil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CADSimulation.cpp">
@@ -147,6 +150,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CADShapeDrag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADShapePencil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

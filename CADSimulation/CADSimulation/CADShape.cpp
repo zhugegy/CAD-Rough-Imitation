@@ -25,6 +25,7 @@ CCADShape::CCADShape()
   m_nBrushColorSwitch = theApp.m_nBrushColor;
 
   m_nRotation = 0;
+
   m_bIsSavable = false;
 }
 
