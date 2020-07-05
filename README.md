@@ -12,7 +12,7 @@ Features:
 - Pencil, straight line, rectangle, ellipse, border style, color palette, dragging, rotating
 - Customized shape drawing, saving and loading
 - Canvas saving and loading (MFC serialization)
-- Used strategy pattern in design
+- Strategy pattern used in design
 
 ---
 
