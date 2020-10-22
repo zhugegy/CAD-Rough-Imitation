@@ -49,7 +49,7 @@ public:
 
 private:
   CDrawContext *m_pobjDrawContext;
-  // bool m_bIsDrawing;
+  bool m_bIsDrawing;
 public:
   afx_msg void OnCadToolbarLine();
   afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);

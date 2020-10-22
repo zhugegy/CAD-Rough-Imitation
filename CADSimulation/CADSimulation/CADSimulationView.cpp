@@ -46,7 +46,7 @@ CCADSimulationView::CCADSimulationView()
   m_pobjDrawContext = NULL;
   m_pobjDrawContext = new CDrawContext;
 
-  // m_bIsDrawing = false;
+  m_bIsDrawing = false;
 
   theApp.m_pView = this;
 }
@@ -129,7 +129,7 @@ CCADSimulationDoc* CCADSimulationView::GetDocument() const // non-debug version 
 void CCADSimulationView::OnLButtonDown(UINT nFlags, CPoint point)
 {
   // TODO: Add your message handler code here and/or call default
-  // m_bIsDrawing = true;
+  m_bIsDrawing = true;
 
   m_pobjDrawContext->OnLButtonDown(point);
 
@@ -143,12 +143,19 @@ void CCADSimulationView::OnLButtonUp(UINT nFlags, CPoint point)
 {
   // TODO: Add your message handler code here and/or call default
   // m_bIsDrawing = false;
-  m_pobjDrawContext->OnLButtonUp(point);
+
+  // 防止双击标题栏造成无缘无故多了一个鼠标抬起动作
+  if (m_bIsDrawing)
+  {
+    m_pobjDrawContext->OnLButtonUp(point);
+    //通知窗口进行重绘
+    InvalidateRect(NULL, FALSE);
+
+    ReleaseCapture();
+
+    m_bIsDrawing = false;
+  }
   
-  //通知窗口进行重绘
-  InvalidateRect(NULL, FALSE);
-  
-  ReleaseCapture();
 
   CView::OnLButtonUp(nFlags, point);
 }
@@ -157,7 +164,7 @@ void CCADSimulationView::OnLButtonUp(UINT nFlags, CPoint point)
 void CCADSimulationView::OnMouseMove(UINT nFlags, CPoint point)
 {
   // TODO: Add your message handler code here and/or call default
-  if (/*m_bIsDrawing == true*/ nFlags & MK_LBUTTON)
+  if (m_bIsDrawing /*nFlags & MK_LBUTTON*/)
   {
     m_pobjDrawContext->OnMouseMove(point);
 
