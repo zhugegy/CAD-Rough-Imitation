@@ -20,6 +20,7 @@
 #include "CADLineStyleDialog.h"
 
 #include "CADShapeStaticFunctions.h"
+#include "CadDrawToolBox.h"
 
 extern CCADSimulationApp theApp;
 
@@ -40,6 +41,8 @@ BEGIN_MESSAGE_MAP(CCADSimulationView, CView)
   ON_WM_CREATE()
 	ON_COMMAND(ID_RIGHTBUTTONPOPUP_DELETE, &CCADSimulationView::OnRightbuttonpopupDelete)
   ON_WM_RBUTTONDOWN()
+  ON_COMMAND(ID_RIGHTBUTTONPOPUP_CHANGE_SHAPE_PEN, &CCADSimulationView::OnRightbuttonpopupChangeShapePen)
+  ON_COMMAND(ID_RIGHTBUTTONPOPUP_CHANGE_SHAPE_BRUSH, &CCADSimulationView::OnRightbuttonpopupChangeShapeBrush)
 END_MESSAGE_MAP()
 
 // CCADSimulationView construction/destruction
@@ -215,4 +218,20 @@ void CCADSimulationView::OnRButtonDown(UINT nFlags, CPoint point)
   pSubMenu->TrackPopupMenu(TPM_LEFTBUTTON, point.x, point.y, this);
 
   CView::OnRButtonDown(nFlags, point);
+}
+
+
+void CCADSimulationView::OnRightbuttonpopupChangeShapePen()
+{
+  // TODO: Add your command handler code here
+  CCadDrawToolBox dlg;
+  dlg.OnBnClickedButtonToolBoxSetPen();
+}
+
+
+void CCADSimulationView::OnRightbuttonpopupChangeShapeBrush()
+{
+  // TODO: Add your command handler code here
+  CCadDrawToolBox dlg;
+  dlg.OnBnClickedButtonToolBoxSetBrush();
 }

@@ -57,6 +57,8 @@ protected:
 public:
 	afx_msg void OnRightbuttonpopupDelete();
 	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnRightbuttonpopupChangeShapePen();
+	afx_msg void OnRightbuttonpopupChangeShapeBrush();
 };
 
 #ifndef _DEBUG  // debug version in CADSimulationView.cpp

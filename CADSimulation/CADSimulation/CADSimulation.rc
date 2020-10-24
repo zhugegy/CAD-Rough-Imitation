@@ -206,6 +206,22 @@ BEGIN
     0
 END
 
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU_RIGHTBUTTON_POPUP MENU
+BEGIN
+    POPUP "RightButtonPopup"
+    BEGIN
+        MENUITEM "É¾³ý",                          ID_RIGHTBUTTONPOPUP_DELETE
+        MENUITEM "ÐÞ¸ÄÍ¼ÐÎ»­±Ê",                      ID_RIGHTBUTTONPOPUP_CHANGE_SHAPE_PEN
+        MENUITEM "ÐÞ¸ÄÍ¼ÐÎ»­Ë¢",                      ID_RIGHTBUTTONPOPUP_CHANGE_SHAPE_BRUSH
+    END
+END
+
 #endif    // Chinese (Simplified, PRC) resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -359,14 +375,6 @@ BEGIN
     MENUITEM "Office 2007 (&Silver Style)", ID_VIEW_APPLOOK_OFF_2007_SILVER
     MENUITEM "Office 2007 (&Aqua Style)",   ID_VIEW_APPLOOK_OFF_2007_AQUA
     MENUITEM "Win&dows 7",                  ID_VIEW_APPLOOK_WINDOWS_7
-END
-
-IDR_MENU_RIGHTBUTTON_POPUP MENU
-BEGIN
-    POPUP "RightButtonPopup"
-    BEGIN
-        MENUITEM "Delete",                      ID_RIGHTBUTTONPOPUP_DELETE
-    END
 END
 
 
