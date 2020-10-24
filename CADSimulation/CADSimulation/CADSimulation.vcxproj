@@ -197,6 +197,7 @@
     <ClInclude Include="CADShapePolygon.h" />
     <ClInclude Include="CADShapeRect.h" />
     <ClInclude Include="CADShapeSelection.h" />
+    <ClInclude Include="CADShapeStaticFunctions.h" />
     <ClInclude Include="CADSimulation.h" />
     <ClInclude Include="CADSimulationDoc.h" />
     <ClInclude Include="CADSimulationView.h" />
@@ -223,6 +224,7 @@
     <ClCompile Include="CADShapePolygon.cpp" />
     <ClCompile Include="CADShapeRect.cpp" />
     <ClCompile Include="CADShapeSelection.cpp" />
+    <ClCompile Include="CADShapeStaticFunctions.cpp" />
     <ClCompile Include="CADSimulation.cpp" />
     <ClCompile Include="CADSimulationDoc.cpp" />
     <ClCompile Include="CADSimulationView.cpp" />

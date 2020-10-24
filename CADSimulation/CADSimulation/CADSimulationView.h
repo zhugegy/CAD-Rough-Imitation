@@ -55,6 +55,8 @@ public:
   afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 protected:
 public:
+	afx_msg void OnRightbuttonpopupDelete();
+	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // debug version in CADSimulationView.cpp

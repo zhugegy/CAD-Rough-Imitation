@@ -361,6 +361,14 @@ BEGIN
     MENUITEM "Win&dows 7",                  ID_VIEW_APPLOOK_WINDOWS_7
 END
 
+IDR_MENU_RIGHTBUTTON_POPUP MENU
+BEGIN
+    POPUP "RightButtonPopup"
+    BEGIN
+        MENUITEM "Delete",                      ID_RIGHTBUTTONPOPUP_DELETE
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

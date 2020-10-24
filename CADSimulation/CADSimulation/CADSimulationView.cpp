@@ -19,6 +19,8 @@
 
 #include "CADLineStyleDialog.h"
 
+#include "CADShapeStaticFunctions.h"
+
 extern CCADSimulationApp theApp;
 
 
@@ -36,6 +38,8 @@ BEGIN_MESSAGE_MAP(CCADSimulationView, CView)
   ON_WM_MOUSEMOVE()
   ON_COMMAND(ID_CAD_TOOLBAR_LINE, &CCADSimulationView::OnCadToolbarLine)
   ON_WM_CREATE()
+	ON_COMMAND(ID_RIGHTBUTTONPOPUP_DELETE, &CCADSimulationView::OnRightbuttonpopupDelete)
+  ON_WM_RBUTTONDOWN()
 END_MESSAGE_MAP()
 
 // CCADSimulationView construction/destruction
@@ -191,4 +195,24 @@ int CCADSimulationView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
   // TODO:  Add your specialized creation code here
   return 0;
+}
+
+void CCADSimulationView::OnRightbuttonpopupDelete()
+{
+	// TODO: Add your command handler code here
+  CCADShapeStaticFunctions::delete_shapes();
+  InvalidateRect(NULL, FALSE);
+}
+
+
+void CCADSimulationView::OnRButtonDown(UINT nFlags, CPoint point)
+{
+  // TODO: Add your message handler code here and/or call default
+  CMenu menu;
+  menu.LoadMenu(MAKEINTRESOURCE(IDR_MENU_RIGHTBUTTON_POPUP));
+  CMenu* pSubMenu = menu.GetSubMenu(0);
+  ClientToScreen(&point);
+  pSubMenu->TrackPopupMenu(TPM_LEFTBUTTON, point.x, point.y, this);
+
+  CView::OnRButtonDown(nFlags, point);
 }

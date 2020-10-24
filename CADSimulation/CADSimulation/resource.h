@@ -23,6 +23,8 @@
 #define IDD_DIALOG_LINESTYLE            314
 #define IDD_DIALOG_BRUSHSTYLE           316
 #define IDD_DIALOG_CUSTOMIZE_SHAPE      318
+#define IDR_MENU1                       320
+#define IDR_MENU_RIGHTBUTTON_POPUP      320
 #define IDC_BUTTON_DRAW_TOOL_BOX_LINE   1000
 #define IDC_BUTTON_DRAW_TOOL_BOX_RECT   1001
 #define IDC_BUTTON_DRAW_TOOL_BOX_ELLIPSE 1002
@@ -57,13 +59,14 @@
 #define IDC_BUTTON1                     1034
 #define IDC_BUTTON_DRAW_TOOL_BOX_PENCIL 1034
 #define ID_CAD_TOOLBAR_LINE             32771
+#define ID_RIGHTBUTTONPOPUP_DELETE      32772
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        320
-#define _APS_NEXT_COMMAND_VALUE         32772
+#define _APS_NEXT_RESOURCE_VALUE        321
+#define _APS_NEXT_COMMAND_VALUE         32773
 #define _APS_NEXT_CONTROL_VALUE         1035
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
