@@ -12,7 +12,12 @@ public:
 private:
   CCADShape* m_pobjCurrentShape;
 public:
-  int SetShape();
+  int SetShapeContext();
+
+  int TemporarilyNullCurrentShapeContext();
+  
+  // unused
+  int RestorePreviousShapeContext(CCADShape* pPrevious);
 
   int OnLButtonDown(CPoint & objPoint);
   int OnLButtonUp(CPoint & objPoint);

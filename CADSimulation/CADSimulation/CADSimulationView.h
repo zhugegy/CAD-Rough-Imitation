@@ -59,6 +59,8 @@ public:
 	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnRightbuttonpopupChangeShapePen();
 	afx_msg void OnRightbuttonpopupChangeShapeBrush();
+	afx_msg void OnEditUndo();
+	afx_msg void OnEditRedo();
 };
 
 #ifndef _DEBUG  // debug version in CADSimulationView.cpp

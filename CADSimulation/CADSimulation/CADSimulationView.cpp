@@ -43,6 +43,8 @@ BEGIN_MESSAGE_MAP(CCADSimulationView, CView)
   ON_WM_RBUTTONDOWN()
   ON_COMMAND(ID_RIGHTBUTTONPOPUP_CHANGE_SHAPE_PEN, &CCADSimulationView::OnRightbuttonpopupChangeShapePen)
   ON_COMMAND(ID_RIGHTBUTTONPOPUP_CHANGE_SHAPE_BRUSH, &CCADSimulationView::OnRightbuttonpopupChangeShapeBrush)
+	ON_COMMAND(ID_EDIT_UNDO, &CCADSimulationView::OnEditUndo)
+  ON_COMMAND(ID_EDIT_REDO, &CCADSimulationView::OnEditRedo)
 END_MESSAGE_MAP()
 
 // CCADSimulationView construction/destruction
@@ -234,4 +236,22 @@ void CCADSimulationView::OnRightbuttonpopupChangeShapeBrush()
   // TODO: Add your command handler code here
   CCadDrawToolBox dlg;
   dlg.OnBnClickedButtonToolBoxSetBrush();
+}
+
+
+void CCADSimulationView::OnEditUndo()
+{
+	// TODO: Add your command handler code here
+  m_pobjDrawContext->TemporarilyNullCurrentShapeContext();
+  CCADShapeStaticFunctions::Undo();
+  InvalidateRect(NULL, FALSE);
+}
+
+
+void CCADSimulationView::OnEditRedo()
+{
+  // TODO: Add your command handler code here
+  m_pobjDrawContext->TemporarilyNullCurrentShapeContext();
+  CCADShapeStaticFunctions::Redo();
+  InvalidateRect(NULL, FALSE);
 }

@@ -9,6 +9,7 @@
 #include "CADShapeSelection.h"
 #include "CADShapeDrag.h"
 #include "CADSimulation.h"
+#include "CADShapeNull.h"
 
 extern CCADSimulationApp theApp;
 
@@ -40,7 +41,7 @@ CDrawContext::~CDrawContext()
 }
 
 
-int CDrawContext::SetShape()
+int CDrawContext::SetShapeContext()
 {
   if (*(theApp.GetLastShapeName()) == _T("Ç¦±Ê"))
   {
@@ -95,9 +96,23 @@ int CDrawContext::SetShape()
   return 0;
 }
 
+int CDrawContext::TemporarilyNullCurrentShapeContext()
+{
+  m_pobjCurrentShape = new CCADShapeNull;
+
+  return 0;
+}
+
+int CDrawContext::RestorePreviousShapeContext(CCADShape* pPrevious)
+{
+  m_pobjCurrentShape = pPrevious;
+
+  return 0;
+}
+
 int CDrawContext::OnLButtonDown(CPoint & objPoint)
 {
-  SetShape();
+  SetShapeContext();
   m_pobjCurrentShape->SetBeginPoint(objPoint);
 
   return 0;
@@ -114,6 +129,8 @@ int CDrawContext::OnLButtonUp(CPoint & objPoint)
 {
   m_pobjCurrentShape->SetEndPoint(objPoint);
   m_pobjCurrentShape->SaveThisShape(objPoint);
+
+  
 
   return 0;
 }

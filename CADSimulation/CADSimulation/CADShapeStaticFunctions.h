@@ -6,5 +6,8 @@ class CCADShapeStaticFunctions :
 public:
   static int delete_shapes();
 
+  static void Undo();
+  static void Redo();
+
 };
 

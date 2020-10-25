@@ -186,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CADBrushStyleDialog.h" />
+    <ClInclude Include="CADCommandAddShape.h" />
     <ClInclude Include="CADCutomizeShape.h" />
     <ClInclude Include="CadDrawToolBox.h" />
     <ClInclude Include="CADLineStyleDialog.h" />
@@ -193,6 +194,7 @@
     <ClInclude Include="CADShapeDrag.h" />
     <ClInclude Include="CADShapeEllipse.h" />
     <ClInclude Include="CADShapeLine.h" />
+    <ClInclude Include="CADShapeNull.h" />
     <ClInclude Include="CADShapePencil.h" />
     <ClInclude Include="CADShapePolygon.h" />
     <ClInclude Include="CADShapeRect.h" />
@@ -206,6 +208,7 @@
     <ClInclude Include="DrawContext.h" />
     <ClInclude Include="GYSingleInstanceDedicatedClass.h" />
     <ClInclude Include="GYSingleInstanceMacro.h" />
+    <ClInclude Include="ICADCommand.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -213,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CADBrushStyleDialog.cpp" />
+    <ClCompile Include="CADCommandAddShape.cpp" />
     <ClCompile Include="CADCutomizeShape.cpp" />
     <ClCompile Include="CadDrawToolBox.cpp" />
     <ClCompile Include="CADLineStyleDialog.cpp" />
@@ -220,6 +224,7 @@
     <ClCompile Include="CADShapeDrag.cpp" />
     <ClCompile Include="CADShapeEllipse.cpp" />
     <ClCompile Include="CADShapeLine.cpp" />
+    <ClCompile Include="CADShapeNull.cpp" />
     <ClCompile Include="CADShapePencil.cpp" />
     <ClCompile Include="CADShapePolygon.cpp" />
     <ClCompile Include="CADShapeRect.cpp" />
@@ -232,6 +237,7 @@
     <ClCompile Include="CADToolBoxView.cpp" />
     <ClCompile Include="DrawContext.cpp" />
     <ClCompile Include="GYSingleInstanceDedicatedClass.cpp" />
+    <ClCompile Include="ICADCommand.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

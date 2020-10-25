@@ -3,6 +3,7 @@
 #include "CADStorage.h"
 #include "GYSingleInstanceMacro.h"
 #include "CADSimulation.h"
+#include "CADCommandAddShape.h"
 
 extern CCADSimulationApp theApp;
 
@@ -73,6 +74,10 @@ int CCADShape::SaveThisShape(CPoint & objPoint)
     CCADStorage *pStorage = GET_SINGLE(CCADStorage);
 
     (pStorage->m_lstShapes).AddTail(this);
+
+    CADCommandAddShape* pCmd = new CADCommandAddShape;
+    pCmd->m_pShapeAdded = this;
+    pStorage->m_stkToUndo.push(pCmd);
   }
 
   return 0;
@@ -120,6 +125,7 @@ int CCADShape::DrawTheBigPicture(HWND hWnd, CDC * pDC)
   }
 
   m_bIsDrawingBackground = false;
+
   this->Draw(hWnd, pDC);
 
   return 0;

@@ -84,6 +84,9 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
 
+	// test
+	// cs.hMenu = ::LoadMenu(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_MENU_RIGHTBUTTON_POPUP));
+
 	return TRUE;
 }
 
