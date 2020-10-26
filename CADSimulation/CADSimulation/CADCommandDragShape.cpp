@@ -3,6 +3,8 @@
 
 void CADCommandDragShape::UnExecute()
 {
+  ASSERT(m_pShapeDragged);
+
   if (m_pShapeDragged == NULL)
   {
     return;
@@ -13,6 +15,8 @@ void CADCommandDragShape::UnExecute()
 
 void CADCommandDragShape::ReExecute()
 {
+  ASSERT(m_pShapeDragged);
+
   if (m_pShapeDragged == NULL)
   {
     return;
