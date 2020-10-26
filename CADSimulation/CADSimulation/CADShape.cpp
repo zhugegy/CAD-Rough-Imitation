@@ -81,7 +81,7 @@ int CCADShape::SaveThisShape(CPoint & objPoint)
   }
   else
   {
-    if (this->RevealActualType() == SHAPE_NAME_DRAG)
+    if (this->RevealActualType() == SHAPE_TYPE_DRAG)
     {
       
     }
@@ -262,5 +262,5 @@ void CCADShape::Serialize(CArchive& archive)
 
 CCADShape::RealName CCADShape::RevealActualType()
 {
-  return SHAPE_NAME_DEFAULT;
+  return SHAPE_TYPE_DEFAULT;
 }

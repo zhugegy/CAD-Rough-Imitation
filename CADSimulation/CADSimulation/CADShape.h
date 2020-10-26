@@ -7,8 +7,8 @@ public:
 
   enum RealName
   {
-    SHAPE_NAME_DEFAULT,
-    SHAPE_NAME_DRAG
+    SHAPE_TYPE_DEFAULT,
+    SHAPE_TYPE_DRAG
   };
 
 protected:
