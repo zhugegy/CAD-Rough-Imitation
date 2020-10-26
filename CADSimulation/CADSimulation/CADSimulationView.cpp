@@ -205,7 +205,11 @@ int CCADSimulationView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void CCADSimulationView::OnRightbuttonpopupDelete()
 {
 	// TODO: Add your command handler code here
+  m_pobjDrawContext->TemporarilyNullCurrentShapeContext();
   CCADShapeStaticFunctions::delete_shapes();
+
+  CCADShapeStaticFunctions::unselect_all();
+ 
   InvalidateRect(NULL, FALSE);
 }
 

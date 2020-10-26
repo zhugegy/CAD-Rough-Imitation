@@ -16,10 +16,33 @@ int CCADShapeStaticFunctions::delete_shapes()
   while (posSelected)
   {
     CCADShape* pShape = (theApp.m_lstSelectedShapes).GetNext(posSelected);
-    pStorage->m_lstShapes.RemoveAt(pStorage->m_lstShapes.Find(pShape));
-    delete pShape;
-    pShape = NULL;
+
+    POSITION posToDelete = pStorage->m_lstShapes.Find(pShape);
+    if (posToDelete)
+    {
+      pStorage->m_lstShapes.RemoveAt(posToDelete);
+
+      //todo
+      delete pShape;
+      pShape = NULL;
+    }
   }
+
+  return 0;
+}
+
+int CCADShapeStaticFunctions::unselect_all()
+{
+  //清空当前选择
+  POSITION posSelected = (theApp.m_lstSelectedShapes).GetHeadPosition();
+  while (posSelected)
+  {
+    CCADShape* pShape = (theApp.m_lstSelectedShapes).GetNext(posSelected);
+
+    pShape->WhenUnselected();
+  }
+
+  (theApp.m_lstSelectedShapes).RemoveAll();
 
   return 0;
 }

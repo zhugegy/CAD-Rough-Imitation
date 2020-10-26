@@ -13,10 +13,10 @@ private:
   CCADShape* m_pobjCurrentShape;
 public:
   int SetShapeContext();
+  CCADShape* GetShapeContext();
 
   int TemporarilyNullCurrentShapeContext();
   
-  // unused
   int RestorePreviousShapeContext(CCADShape* pPrevious);
 
   int OnLButtonDown(CPoint & objPoint);

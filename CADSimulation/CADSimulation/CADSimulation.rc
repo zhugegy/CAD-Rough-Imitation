@@ -216,7 +216,7 @@ IDR_MENU_RIGHTBUTTON_POPUP MENU
 BEGIN
     POPUP "RightButtonPopup"
     BEGIN
-        MENUITEM "É¾³ý",                          ID_RIGHTBUTTONPOPUP_DELETE
+        MENUITEM "É¾³ýËùÑ¡",                        ID_RIGHTBUTTONPOPUP_DELETE
         MENUITEM "ÐÞ¸ÄÍ¼ÐÎ»­±Ê",                      ID_RIGHTBUTTONPOPUP_CHANGE_SHAPE_PEN
         MENUITEM "ÐÞ¸ÄÍ¼ÐÎ»­Ë¢",                      ID_RIGHTBUTTONPOPUP_CHANGE_SHAPE_BRUSH
         MENUITEM "Undo\tCtrl+Z",                ID_EDIT_UNDO

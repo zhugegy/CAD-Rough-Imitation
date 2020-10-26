@@ -83,8 +83,9 @@ int CDrawContext::SetShapeContext()
 
   if (*(theApp.GetLastShapeName()) == _T("È¡Ïû"))
   {
-    m_pobjCurrentShape = new CCADShape;
     //m_pobjCurrentShape = new CCADShapeLine;
+    //m_pobjCurrentShape = new CCADShape;
+    m_pobjCurrentShape = new CCADShapeNull;
   }
 
   if (*(theApp.GetLastShapeName()) == _T("ÍÏ¶¯"))
@@ -94,6 +95,11 @@ int CDrawContext::SetShapeContext()
 
 
   return 0;
+}
+
+CCADShape* CDrawContext::GetShapeContext()
+{
+  return m_pobjCurrentShape;
 }
 
 int CDrawContext::TemporarilyNullCurrentShapeContext()

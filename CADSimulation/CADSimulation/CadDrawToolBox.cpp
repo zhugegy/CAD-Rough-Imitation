@@ -11,6 +11,8 @@
 #include "CADCutomizeShape.h"
 #include "CADSimulationView.h"
 
+#include "CADShapeStaticFunctions.h"
+
 #include <fstream>
 
 
@@ -126,16 +128,7 @@ void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCancelSelection()
   // TODO: Add your control notification handler code here
   theApp.SetLastShapeName(GetDlgItem(IDC_BUTTON_DRAW_TOOL_BOX_CANCEL_SELECTION));
 
-  //清空当前选择
-  POSITION posSelected = (theApp.m_lstSelectedShapes).GetHeadPosition();
-  while (posSelected)
-  {
-    CCADShape * pShape = (theApp.m_lstSelectedShapes).GetNext(posSelected);
-
-    pShape->WhenUnselected();
-  }
-
-  (theApp.m_lstSelectedShapes).RemoveAll();
+  CCADShapeStaticFunctions::unselect_all();
 
   //通知窗口进行重绘
   theApp.m_pView->InvalidateRect(NULL, FALSE);
