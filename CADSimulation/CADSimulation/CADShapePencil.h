@@ -11,7 +11,11 @@ public:
   /*==virtual==*/ CDC * Draw(HWND hWnd, CDC * pDC);
   /*==virtual==*/ int SetEndPoint(CPoint & objEndPoint);
   /*==virtual==*/ int WhenDragged(int nCoordXOffset, int nCoordYOffset);
+  /*==virtual==*/ int WhenDraggedCommandMode(int nCoordXOffset, int nCoordYOffset);
+  /*==virtual==*/ int WhenUndraggedCommandMode(CPoint& ptBegin, CPoint& ptEnd);
   /*==virtual==*/ int BeforeBeingDragged();
+
+  
 
   void Serialize(CArchive& archive);
 

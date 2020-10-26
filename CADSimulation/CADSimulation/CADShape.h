@@ -46,6 +46,8 @@ public:
   int WhenSelected();
   int WhenUnselected();
   virtual int WhenDragged(int nCoordXOffset, int nCoordYOffset);
+  virtual int WhenDraggedCommandMode(int nCoordXOffset, int nCoordYOffset);
+  virtual int WhenUndraggedCommandMode(CPoint &ptBegin, CPoint& ptEnd);
   virtual int BeforeBeingDragged();
   int AfterBeingDragged();
   int SetBrush(COLORREF color);
@@ -55,5 +57,9 @@ public:
   void Serialize(CArchive& archive);
 
   virtual RealName RevealActualType();
+
+  CPoint GetBeginPointBeforeDragged();
+  CPoint GetEndPointBeforeDragged();
+  void ResetDraggingAnchor();
 };
 

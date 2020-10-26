@@ -141,6 +141,28 @@ int CCADShapePencil::WhenDragged(int nCoordXOffset, int nCoordYOffset)
   return 0;
 }
 
+int CCADShapePencil::WhenDraggedCommandMode(int nCoordXOffset, int nCoordYOffset)
+{
+  ResetDraggingAnchor();
+  WhenDragged(nCoordXOffset, nCoordYOffset);
+
+  return 0;
+}
+
+int CCADShapePencil::WhenUndraggedCommandMode(CPoint& ptBegin, CPoint& ptEnd)
+{
+  CCADShape::WhenUndraggedCommandMode(ptBegin, ptEnd);
+  m_lstPencilPoints.RemoveAll();
+
+  POSITION posSelected = m_lstPencilPointsBefore.GetHeadPosition();
+  while (posSelected)
+  {
+    m_lstPencilPoints.AddTail(m_lstPencilPointsBefore.GetNext(posSelected));
+  }
+
+  return 0;
+}
+
 int CCADShapePencil::BeforeBeingDragged()
 {
   CCADShape::BeforeBeingDragged();

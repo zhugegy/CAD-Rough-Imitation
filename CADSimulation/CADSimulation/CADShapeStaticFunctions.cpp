@@ -14,8 +14,8 @@ int CCADShapeStaticFunctions::delete_shapes()
 {
   //遍历当前选择
   CCADStorage* pStorage = GET_SINGLE(CCADStorage);
-  POSITION posSelected = (theApp.m_lstSelectedShapes).GetHeadPosition();
 
+  POSITION posSelected = (theApp.m_lstSelectedShapes).GetHeadPosition();
   if (posSelected == NULL)
   {
     return -1;

@@ -8,8 +8,7 @@ void CADCommandDragShape::UnExecute()
     return;
   }
 
-  m_pShapeDragged->SetBeginPoint(m_ptStartPTBeforeDragged);
-  m_pShapeDragged->SetEndPoint(m_ptEndPTBeforeDragged);
+  m_pShapeDragged->WhenUndraggedCommandMode(m_ptStartPTBeforeDragged, m_ptEndPTBeforeDragged);
 }
 
 void CADCommandDragShape::ReExecute()
@@ -19,7 +18,7 @@ void CADCommandDragShape::ReExecute()
     return;
   }
 
-  m_pShapeDragged->WhenDragged(m_nCoordXOffset, m_nCoordYOffset);
+  m_pShapeDragged->WhenDraggedCommandMode(m_nCoordXOffset, m_nCoordYOffset);
 }
 
 void CADCommandDragShape::SetOriginPoint(CPoint& ptStartPTBeforeDragged, 

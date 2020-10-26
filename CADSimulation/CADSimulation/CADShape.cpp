@@ -4,6 +4,8 @@
 #include "GYSingleInstanceMacro.h"
 #include "CADSimulation.h"
 #include "CADCommandAddShape.h"
+#include "CADCommandDragShapes.h"
+#include "CADCommandDragShape.h"
 
 extern CCADSimulationApp theApp;
 
@@ -69,22 +71,45 @@ CDC * CCADShape::Draw(HWND hWnd, CDC * pDC)
 
 int CCADShape::SaveThisShape(CPoint & objPoint)
 {
+  CCADStorage* pStorage = GET_SINGLE(CCADStorage);
+
   if (m_bIsSavable == true)
   {
-    CCADStorage *pStorage = GET_SINGLE(CCADStorage);
-
     (pStorage->m_lstShapes).AddTail(this);
 
     CADCommandAddShape* pCmd = new CADCommandAddShape;
     pCmd->m_pShapeAdded = this;
     pStorage->m_stkToUndo.push(pCmd);
   }
-  else
+  else if (this->RevealActualType() == SHAPE_TYPE_DRAG)
   {
-    if (this->RevealActualType() == SHAPE_TYPE_DRAG)
+    POSITION posSelected = (theApp.m_lstSelectedShapes).GetHeadPosition();
+    if (posSelected == NULL)
     {
-      
+      return -1;
     }
+
+    CADCommandDragShapes* pCmdDragShapes = new CADCommandDragShapes;
+
+    while (posSelected)
+    {
+      CCADShape* pShape = (theApp.m_lstSelectedShapes).GetNext(posSelected);
+
+      POSITION posToDrag = pStorage->m_lstShapes.Find(pShape);
+      if (posToDrag)
+      {
+        CADCommandDragShape* pCmdDragShape = new CADCommandDragShape;
+        pCmdDragShape->m_pShapeDragged = pShape;
+        pCmdDragShape->SetOriginPoint(pShape->GetBeginPointBeforeDragged(), pShape->GetEndPointBeforeDragged());
+        pCmdDragShape->SetOffsets(this->m_objEndPoint.x - this->m_objBeginPoint.x,
+          this->m_objEndPoint.y - this->m_objBeginPoint.y);
+
+        pCmdDragShapes->PushDragShapeCommand(pCmdDragShape);
+      }
+    }
+
+    ASSERT(pCmdDragShapes->GetCommandCount() != 0);
+    pStorage->m_stkToUndo.push(pCmdDragShapes);
   }
 
   return 0;
@@ -197,6 +222,22 @@ int CCADShape::WhenDragged(int nCoordXOffset, int nCoordYOffset)
 }
 
 
+int CCADShape::WhenDraggedCommandMode(int nCoordXOffset, int nCoordYOffset)
+{
+  ResetDraggingAnchor();
+  WhenDragged(nCoordXOffset, nCoordYOffset);
+
+  return 0;
+}
+
+int CCADShape::WhenUndraggedCommandMode(CPoint& ptBegin, CPoint& ptEnd)
+{
+  SetBeginPoint(ptBegin);
+  SetEndPoint(ptEnd);
+
+  return 0;
+}
+
 int CCADShape::BeforeBeingDragged()
 {
   m_objBeginPointBefore = m_objBeginPoint;
@@ -263,4 +304,20 @@ void CCADShape::Serialize(CArchive& archive)
 CCADShape::RealName CCADShape::RevealActualType()
 {
   return SHAPE_TYPE_DEFAULT;
+}
+
+CPoint CCADShape::GetBeginPointBeforeDragged()
+{
+  return m_objBeginPointBefore;
+}
+
+CPoint CCADShape::GetEndPointBeforeDragged()
+{
+  return m_objEndPointBefore;
+}
+
+void CCADShape::ResetDraggingAnchor()
+{
+  m_objBeginPointBefore = m_objBeginPoint;
+  m_objEndPointBefore = m_objEndPoint;
 }
