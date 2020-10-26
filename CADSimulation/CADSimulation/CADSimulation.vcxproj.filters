@@ -108,6 +108,12 @@
     <ClInclude Include="CADCommandDeleteShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CADCommandDragShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CADCommandDragShapes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CADSimulation.cpp">
@@ -189,6 +195,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CADCommandDeleteShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADCommandDragShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADCommandDragShapes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

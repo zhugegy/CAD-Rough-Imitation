@@ -79,6 +79,13 @@ int CCADShape::SaveThisShape(CPoint & objPoint)
     pCmd->m_pShapeAdded = this;
     pStorage->m_stkToUndo.push(pCmd);
   }
+  else
+  {
+    if (this->RevealActualType() == SHAPE_NAME_DRAG)
+    {
+      
+    }
+  }
 
   return 0;
 }
@@ -251,4 +258,9 @@ void CCADShape::Serialize(CArchive& archive)
     archive >> m_objBeginPoint >> m_objEndPoint >> m_nRotation >> m_nPenWidth
       >> m_nPenStyle >> m_nPenColor >> m_nBrushColor;
   }
+}
+
+CCADShape::RealName CCADShape::RevealActualType()
+{
+  return SHAPE_NAME_DEFAULT;
 }

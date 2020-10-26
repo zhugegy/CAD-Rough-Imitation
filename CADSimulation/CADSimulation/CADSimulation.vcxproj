@@ -189,6 +189,8 @@
     <ClInclude Include="CADCommandAddShape.h" />
     <ClInclude Include="CADCommandDeleteShape.h" />
     <ClInclude Include="CADCommandDeleteShapes.h" />
+    <ClInclude Include="CADCommandDragShape.h" />
+    <ClInclude Include="CADCommandDragShapes.h" />
     <ClInclude Include="CADCutomizeShape.h" />
     <ClInclude Include="CadDrawToolBox.h" />
     <ClInclude Include="CADLineStyleDialog.h" />
@@ -221,6 +223,8 @@
     <ClCompile Include="CADCommandAddShape.cpp" />
     <ClCompile Include="CADCommandDeleteShape.cpp" />
     <ClCompile Include="CADCommandDeleteShapes.cpp" />
+    <ClCompile Include="CADCommandDragShape.cpp" />
+    <ClCompile Include="CADCommandDragShapes.cpp" />
     <ClCompile Include="CADCutomizeShape.cpp" />
     <ClCompile Include="CadDrawToolBox.cpp" />
     <ClCompile Include="CADLineStyleDialog.cpp" />

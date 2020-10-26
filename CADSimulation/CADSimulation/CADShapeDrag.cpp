@@ -72,3 +72,8 @@ int CCADShapeDrag::SetEndPoint(CPoint & objBeginPoint)
 
   return 0;
 }
+
+CCADShape::RealName CCADShapeDrag::RevealActualType()
+{
+  return SHAPE_NAME_DRAG;
+}

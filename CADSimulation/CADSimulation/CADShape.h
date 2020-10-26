@@ -5,6 +5,12 @@ public:
   CCADShape();
   virtual ~CCADShape();
 
+  enum RealName
+  {
+    SHAPE_NAME_DEFAULT,
+    SHAPE_NAME_DRAG
+  };
+
 protected:
   CPoint m_objBeginPoint;
   CPoint m_objEndPoint;
@@ -48,5 +54,6 @@ public:
 
   void Serialize(CArchive& archive);
 
+  virtual RealName RevealActualType();
 };
 
