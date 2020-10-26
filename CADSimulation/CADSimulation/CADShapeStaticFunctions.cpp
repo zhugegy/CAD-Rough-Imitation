@@ -5,6 +5,8 @@
 
 #include "CADStorage.h"
 #include "ICADCommand.h"
+#include "CADCommandDeleteShapes.h"
+#include "CADCommandDeleteShape.h"
 
 #include <afxwin2.inl>
 
@@ -13,6 +15,14 @@ int CCADShapeStaticFunctions::delete_shapes()
   //遍历当前选择
   CCADStorage* pStorage = GET_SINGLE(CCADStorage);
   POSITION posSelected = (theApp.m_lstSelectedShapes).GetHeadPosition();
+
+  if (posSelected == NULL)
+  {
+    return -1;
+  }
+
+  CADCommandDeleteShapes* pCmdDeleteShapes = new CADCommandDeleteShapes;
+
   while (posSelected)
   {
     CCADShape* pShape = (theApp.m_lstSelectedShapes).GetNext(posSelected);
@@ -22,10 +32,17 @@ int CCADShapeStaticFunctions::delete_shapes()
     {
       pStorage->m_lstShapes.RemoveAt(posToDelete);
 
-      //todo
-      delete pShape;
-      pShape = NULL;
+      CADCommandDeleteShape* pCmdDeleteShape = new CADCommandDeleteShape;
+      pCmdDeleteShape->m_pShapeDeleted = pShape;
+      pCmdDeleteShapes->PushDeleteShapeCommand(pCmdDeleteShape);
     }
+  }
+
+  ASSERT(pCmdDeleteShapes->GetCommandCount() != 0);
+
+  if (pCmdDeleteShapes->GetCommandCount())
+  {
+    pStorage->m_stkToUndo.push(pCmdDeleteShapes);
   }
 
   return 0;

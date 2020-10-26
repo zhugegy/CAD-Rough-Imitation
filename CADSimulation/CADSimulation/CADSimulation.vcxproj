@@ -187,6 +187,8 @@
   <ItemGroup>
     <ClInclude Include="CADBrushStyleDialog.h" />
     <ClInclude Include="CADCommandAddShape.h" />
+    <ClInclude Include="CADCommandDeleteShape.h" />
+    <ClInclude Include="CADCommandDeleteShapes.h" />
     <ClInclude Include="CADCutomizeShape.h" />
     <ClInclude Include="CadDrawToolBox.h" />
     <ClInclude Include="CADLineStyleDialog.h" />
@@ -217,6 +219,8 @@
   <ItemGroup>
     <ClCompile Include="CADBrushStyleDialog.cpp" />
     <ClCompile Include="CADCommandAddShape.cpp" />
+    <ClCompile Include="CADCommandDeleteShape.cpp" />
+    <ClCompile Include="CADCommandDeleteShapes.cpp" />
     <ClCompile Include="CADCutomizeShape.cpp" />
     <ClCompile Include="CadDrawToolBox.cpp" />
     <ClCompile Include="CADLineStyleDialog.cpp" />

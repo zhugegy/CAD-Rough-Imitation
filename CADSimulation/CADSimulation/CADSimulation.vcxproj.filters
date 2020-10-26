@@ -102,6 +102,12 @@
     <ClInclude Include="CADShapeNull.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CADCommandDeleteShapes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CADCommandDeleteShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CADSimulation.cpp">
@@ -177,6 +183,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CADShapeNull.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADCommandDeleteShapes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADCommandDeleteShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
