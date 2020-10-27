@@ -185,6 +185,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CADCommandSetBrushToShape.h" />
     <ClInclude Include="CADDialogBrushStyle.h" />
     <ClInclude Include="CADCommandAddShape.h" />
     <ClInclude Include="CADCommandDeleteShape.h" />
@@ -220,6 +221,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CADCommandSetBrushToShape.cpp" />
     <ClCompile Include="CADDialogBrushStyle.cpp" />
     <ClCompile Include="CADCommandAddShape.cpp" />
     <ClCompile Include="CADCommandDeleteShape.cpp" />

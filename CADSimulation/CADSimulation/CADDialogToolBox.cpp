@@ -13,11 +13,10 @@
 
 #include "CADStaticFunctions.h"
 
+#include "CADCommandGroupCmds.h"
 #include "CADCommandRotateShape.h"
-#include "CADCommandGroupCmds.h"
-
 #include "CADCommandSetPenToShape.h"
-#include "CADCommandGroupCmds.h"
+#include "CADCommandSetBrushToShape.h"
 
 #include "CADStorage.h"
 
@@ -198,7 +197,7 @@ void CADDialogToolBox::OnBnClickedButtonToolBoxSetPen()
 
         int nPenWidth;
         int nPenStyle;
-        COLORREF  colPenColor;
+        COLORREF colPenColor;
         pShape->GetPen(nPenWidth, nPenStyle, colPenColor);
 
         pCmdSetPenToShape->m_nPenWidthBefore = nPenWidth;
@@ -256,19 +255,45 @@ void CADDialogToolBox::OnBnClickedButtonToolBoxSetBrush()
 
     //遍历当前选择
     POSITION posSelected = (theApp.m_lstSelectedShapes).GetHeadPosition();
+
+    if (posSelected == NULL)
+    {
+      return;
+    }
+
+    CCADStorage* pStorage = GET_SINGLE(CCADStorage);
+    CADCommandGroupCmds* pCmdSetBrushToShapes = new CADCommandGroupCmds;
+
     while (posSelected)
     {
       CCADShape * pShape = (theApp.m_lstSelectedShapes).GetNext(posSelected);
 
-      pShape->SetBrush(theApp.m_nBrushColor);
-      pShape->WhenUnselected();
+      if (pShape)
+      {
+        CADCommandSetBrushToShape* pCmdSetBrushToShape = new CADCommandSetBrushToShape;
+        pCmdSetBrushToShape->m_pShapeSetBrushTo = pShape;
+
+        COLORREF colBrushColor;
+        pShape->GetBrush(colBrushColor);
+        pCmdSetBrushToShape->m_nBrushColorBefore = colBrushColor;
+
+        pShape->SetBrush(theApp.m_nBrushColor);
+
+        pCmdSetBrushToShape->m_nBrushColorAfter = theApp.m_nBrushColor;
+
+        pCmdSetBrushToShapes->PushCommand(pCmdSetBrushToShape);
+
+        pShape->WhenUnselected();
+      }
     }
+
+    ASSERT(pCmdSetBrushToShapes->GetCommandCount() != 0);
+    pStorage->m_stkToUndo.push(pCmdSetBrushToShapes);
 
     (theApp.m_lstSelectedShapes).RemoveAll();
 
     //通知窗口进行重绘
     theApp.m_pView->InvalidateRect(NULL, FALSE);
-
   }
 
 }

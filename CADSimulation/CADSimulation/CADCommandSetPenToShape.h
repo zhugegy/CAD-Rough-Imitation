@@ -7,8 +7,8 @@ class CADCommandSetPenToShape :
     public CADCommand
 {
 public:
-  /*virtual*/ void UnExecute();
-  /*virtual*/ void ReExecute();
+  /*==virtual==*/ void UnExecute();
+  /*==virtual==*/ void ReExecute();
 
   CCADShape* m_pShapeSetPenTo;
 

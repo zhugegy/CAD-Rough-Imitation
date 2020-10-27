@@ -8,7 +8,7 @@ void CADCommandSetPenToShape::UnExecute()
     return;
   }
 
-  m_pShapeSetPenTo->SetPen(m_nPenWidthBefore, m_nPenStyleBefore, m_nPenColorBefore);
+  m_pShapeSetPenTo->SetPenCommand(m_nPenWidthBefore, m_nPenStyleBefore, m_nPenColorBefore);
 }
 
 void CADCommandSetPenToShape::ReExecute()
@@ -18,5 +18,5 @@ void CADCommandSetPenToShape::ReExecute()
     return;
   }
 
-  m_pShapeSetPenTo->SetPen(m_nPenWidthAfter, m_nPenStyleAfter, m_nPenColorAfter);
+  m_pShapeSetPenTo->SetPenCommand(m_nPenWidthAfter, m_nPenStyleAfter, m_nPenColorAfter);
 }

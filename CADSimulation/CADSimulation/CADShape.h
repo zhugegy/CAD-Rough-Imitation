@@ -1,4 +1,6 @@
 #pragma once
+#include "stdafx.h"
+
 class CCADShape : public CObject
 {
 public:
@@ -51,7 +53,10 @@ public:
   virtual int BeforeBeingDragged();
   int AfterBeingDragged();
   int SetBrush(COLORREF color);
+  int SetBrushCommand(COLORREF color);   // dedicated to undo/redo usage
+  int GetBrush(COLORREF & color);
   int SetPen(int PenWidth, int PenStyle, COLORREF PenColor);
+  int SetPenCommand(int PenWidth, int PenStyle, COLORREF PenColor); // dedicated to undo/redo usage
   int GetPen(int & PenWidth, int & PenStyle, COLORREF & PenColor);
   int SetRotation(int nRotation);
   int GetRotation();

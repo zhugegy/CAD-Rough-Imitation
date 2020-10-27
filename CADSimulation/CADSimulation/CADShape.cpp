@@ -263,6 +263,21 @@ int CCADShape::SetBrush(COLORREF color)
   return 0;
 }
 
+int CCADShape::SetBrushCommand(COLORREF color)
+{
+  m_nBrushColor = color;
+
+  return 0;
+}
+
+int CCADShape::GetBrush(COLORREF & color)
+{
+  //直接修改保存的值，不用修改m_nBrushColor，因为等会就会switch回来
+  color = m_nBrushColorSwitch;
+   
+  return 0;
+}
+
 
 int CCADShape::SetPen(int PenWidth, int PenStyle, COLORREF PenColor)
 {
@@ -271,13 +286,18 @@ int CCADShape::SetPen(int PenWidth, int PenStyle, COLORREF PenColor)
   m_nPenStyleSwitch = PenStyle;
   m_nPenColorSwitch = PenColor;
 
+  return 0;
+}
+
+
+int CCADShape::SetPenCommand(int PenWidth, int PenStyle, COLORREF PenColor)
+{
   m_nPenWidth = PenWidth;
   m_nPenStyle = PenStyle;
   m_nPenColor = PenColor;
 
   return 0;
 }
-
 
 int CCADShape::GetPen(int& PenWidth, int& PenStyle, COLORREF& PenColor)
 {
