@@ -4,13 +4,13 @@
 
 // CCADBrushStyleDialog dialog
 
-class CCADBrushStyleDialog : public CDialog
+class CADDialogBrushStyle : public CDialog
 {
-	DECLARE_DYNAMIC(CCADBrushStyleDialog)
+	DECLARE_DYNAMIC(CADDialogBrushStyle)
 
 public:
-	CCADBrushStyleDialog(CWnd* pParent = NULL);   // standard constructor
-	virtual ~CCADBrushStyleDialog();
+	CADDialogBrushStyle(CWnd* pParent = NULL);   // standard constructor
+	virtual ~CADDialogBrushStyle();
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME

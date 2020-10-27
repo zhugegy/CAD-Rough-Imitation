@@ -15,8 +15,6 @@ public:
   /*==virtual==*/ int WhenUndraggedCommandMode(CPoint& ptBegin, CPoint& ptEnd);
   /*==virtual==*/ int BeforeBeingDragged();
 
-  
-
   void Serialize(CArchive& archive);
 
 private:
@@ -24,4 +22,3 @@ private:
   CList<CPoint, CPoint> m_lstPencilPointsBefore;
 
 };
-

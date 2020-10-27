@@ -3,34 +3,34 @@
 
 #include "stdafx.h"
 #include "CADSimulation.h"
-#include "CADCutomizeShape.h"
+#include "CADDialogDrawCustomizeShape.h"
 #include "afxdialogex.h"
 
 // CCADCutomizeShape dialog
 
-IMPLEMENT_DYNAMIC(CCADCutomizeShape, CDialog)
+IMPLEMENT_DYNAMIC(CADDialogDrawCustomizeShape, CDialog)
 
-CCADCutomizeShape::CCADCutomizeShape(CWnd* pParent /*=NULL*/)
+CADDialogDrawCustomizeShape::CADDialogDrawCustomizeShape(CWnd* pParent /*=NULL*/)
 	: CDialog(IDD_DIALOG_CUSTOMIZE_SHAPE, pParent)
   , m_strCurrentCusorPostion(_T(""))
 {
 
 }
 
-CCADCutomizeShape::~CCADCutomizeShape()
+CADDialogDrawCustomizeShape::~CADDialogDrawCustomizeShape()
 {
 }
 
-void CCADCutomizeShape::DoDataExchange(CDataExchange* pDX)
+void CADDialogDrawCustomizeShape::DoDataExchange(CDataExchange* pDX)
 {
   CDialog::DoDataExchange(pDX);
   DDX_Text(pDX, IDC_EDIT_CUSTOMIZE_SHAPE_COORD_EDIT, m_strCurrentCusorPostion);
 }
 
 
-BEGIN_MESSAGE_MAP(CCADCutomizeShape, CDialog)
-  ON_BN_CLICKED(IDOK, &CCADCutomizeShape::OnBnClickedOk)
-  ON_BN_CLICKED(IDCANCEL, &CCADCutomizeShape::OnBnClickedCancel)
+BEGIN_MESSAGE_MAP(CADDialogDrawCustomizeShape, CDialog)
+  ON_BN_CLICKED(IDOK, &CADDialogDrawCustomizeShape::OnBnClickedOk)
+  ON_BN_CLICKED(IDCANCEL, &CADDialogDrawCustomizeShape::OnBnClickedCancel)
   ON_WM_MOUSEMOVE()
   ON_WM_LBUTTONUP()
 END_MESSAGE_MAP()
@@ -39,21 +39,21 @@ END_MESSAGE_MAP()
 // CCADCutomizeShape message handlers
 
 
-void CCADCutomizeShape::OnBnClickedOk()
+void CADDialogDrawCustomizeShape::OnBnClickedOk()
 {
   // TODO: Add your control notification handler code here
   CDialog::OnOK();
 }
 
 
-void CCADCutomizeShape::OnBnClickedCancel()
+void CADDialogDrawCustomizeShape::OnBnClickedCancel()
 {
   // TODO: Add your control notification handler code here
   CDialog::OnCancel();
 }
 
 
-void CCADCutomizeShape::OnMouseMove(UINT nFlags, CPoint point)
+void CADDialogDrawCustomizeShape::OnMouseMove(UINT nFlags, CPoint point)
 {
   // TODO: Add your message handler code here and/or call default
   int nDrawPosX = point.x - CUSTOMIZE_SHAPE_MATRIX_OFFSET;
@@ -75,7 +75,7 @@ void CCADCutomizeShape::OnMouseMove(UINT nFlags, CPoint point)
 }
 
 
-BOOL CCADCutomizeShape::OnInitDialog()
+BOOL CADDialogDrawCustomizeShape::OnInitDialog()
 {
   CDialog::OnInitDialog();
 
@@ -88,7 +88,7 @@ BOOL CCADCutomizeShape::OnInitDialog()
 }
 
 
-void CCADCutomizeShape::OnLButtonUp(UINT nFlags, CPoint point)
+void CADDialogDrawCustomizeShape::OnLButtonUp(UINT nFlags, CPoint point)
 {
   // TODO: Add your message handler code here and/or call default
   int nDrawPosX = point.x - CUSTOMIZE_SHAPE_MATRIX_OFFSET;

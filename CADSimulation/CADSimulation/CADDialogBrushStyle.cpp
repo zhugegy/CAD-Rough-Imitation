@@ -3,26 +3,26 @@
 
 #include "stdafx.h"
 #include "CADSimulation.h"
-#include "CADBrushStyleDialog.h"
+#include "CADDialogBrushStyle.h"
 #include "afxdialogex.h"
 
 
 // CCADBrushStyleDialog dialog
 
-IMPLEMENT_DYNAMIC(CCADBrushStyleDialog, CDialog)
+IMPLEMENT_DYNAMIC(CADDialogBrushStyle, CDialog)
 
-CCADBrushStyleDialog::CCADBrushStyleDialog(CWnd* pParent /*=NULL*/)
+CADDialogBrushStyle::CADDialogBrushStyle(CWnd* pParent /*=NULL*/)
 	: CDialog(IDD_DIALOG_BRUSHSTYLE, pParent)
   , m_nBrushChoice(0)
 {
 
 }
 
-CCADBrushStyleDialog::~CCADBrushStyleDialog()
+CADDialogBrushStyle::~CADDialogBrushStyle()
 {
 }
 
-void CCADBrushStyleDialog::DoDataExchange(CDataExchange* pDX)
+void CADDialogBrushStyle::DoDataExchange(CDataExchange* pDX)
 {
   CDialog::DoDataExchange(pDX);
   DDX_Radio(pDX, IDC_RADIO1, m_nBrushChoice);
@@ -30,31 +30,31 @@ void CCADBrushStyleDialog::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CCADBrushStyleDialog, CDialog)
-  ON_BN_CLICKED(IDOK, &CCADBrushStyleDialog::OnBnClickedOk)
-  ON_BN_CLICKED(IDCANCEL, &CCADBrushStyleDialog::OnBnClickedCancel)
-  ON_BN_CLICKED(IDC_BUTTON_BRUSH_COLOR, &CCADBrushStyleDialog::OnBnClickedButtonBrushColor)
+BEGIN_MESSAGE_MAP(CADDialogBrushStyle, CDialog)
+  ON_BN_CLICKED(IDOK, &CADDialogBrushStyle::OnBnClickedOk)
+  ON_BN_CLICKED(IDCANCEL, &CADDialogBrushStyle::OnBnClickedCancel)
+  ON_BN_CLICKED(IDC_BUTTON_BRUSH_COLOR, &CADDialogBrushStyle::OnBnClickedButtonBrushColor)
 END_MESSAGE_MAP()
 
 
 // CCADBrushStyleDialog message handlers
 
 
-void CCADBrushStyleDialog::OnBnClickedOk()
+void CADDialogBrushStyle::OnBnClickedOk()
 {
   // TODO: Add your control notification handler code here
   CDialog::OnOK();
 }
 
 
-void CCADBrushStyleDialog::OnBnClickedCancel()
+void CADDialogBrushStyle::OnBnClickedCancel()
 {
   // TODO: Add your control notification handler code here
   CDialog::OnCancel();
 }
 
 
-BOOL CCADBrushStyleDialog::OnInitDialog()
+BOOL CADDialogBrushStyle::OnInitDialog()
 {
   CDialog::OnInitDialog();
 
@@ -77,7 +77,7 @@ BOOL CCADBrushStyleDialog::OnInitDialog()
 }
 
 
-void CCADBrushStyleDialog::OnBnClickedButtonBrushColor()
+void CADDialogBrushStyle::OnBnClickedButtonBrushColor()
 {
   // TODO: Add your control notification handler code here
   CColorDialog dlg;

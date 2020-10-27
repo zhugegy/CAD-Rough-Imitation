@@ -17,10 +17,10 @@
 #define new DEBUG_NEW
 #endif
 
-#include "CADLineStyleDialog.h"
+#include "CADDialogLineStyle.h"
 
-#include "CADShapeStaticFunctions.h"
-#include "CadDrawToolBox.h"
+#include "CADStaticFunctions.h"
+#include "CADDialogToolBox.h"
 
 extern CCADSimulationApp theApp;
 
@@ -53,7 +53,7 @@ CCADSimulationView::CCADSimulationView()
 {
 	// TODO: add construction code here
   m_pobjDrawContext = NULL;
-  m_pobjDrawContext = new CDrawContext;
+  m_pobjDrawContext = new CADDrawContext;
 
   m_bIsDrawing = false;
 
@@ -206,9 +206,9 @@ void CCADSimulationView::OnRightbuttonpopupDelete()
 {
 	// TODO: Add your command handler code here
   m_pobjDrawContext->TemporarilyNullCurrentShapeContext();
-  CCADShapeStaticFunctions::delete_shapes();
+  CADStaticFunctions::delete_shapes();
 
-  CCADShapeStaticFunctions::unselect_all();
+  CADStaticFunctions::unselect_all();
  
   InvalidateRect(NULL, FALSE);
 }
@@ -230,7 +230,7 @@ void CCADSimulationView::OnRButtonDown(UINT nFlags, CPoint point)
 void CCADSimulationView::OnRightbuttonpopupChangeShapePen()
 {
   // TODO: Add your command handler code here
-  CCadDrawToolBox dlg;
+  CADDialogToolBox dlg;
   dlg.OnBnClickedButtonToolBoxSetPen();
 }
 
@@ -238,7 +238,7 @@ void CCADSimulationView::OnRightbuttonpopupChangeShapePen()
 void CCADSimulationView::OnRightbuttonpopupChangeShapeBrush()
 {
   // TODO: Add your command handler code here
-  CCadDrawToolBox dlg;
+  CADDialogToolBox dlg;
   dlg.OnBnClickedButtonToolBoxSetBrush();
 }
 
@@ -247,7 +247,7 @@ void CCADSimulationView::OnEditUndo()
 {
 	// TODO: Add your command handler code here
   m_pobjDrawContext->TemporarilyNullCurrentShapeContext();
-  CCADShapeStaticFunctions::Undo();
+  CADStaticFunctions::Undo();
   InvalidateRect(NULL, FALSE);
 }
 
@@ -256,6 +256,6 @@ void CCADSimulationView::OnEditRedo()
 {
   // TODO: Add your command handler code here
   m_pobjDrawContext->TemporarilyNullCurrentShapeContext();
-  CCADShapeStaticFunctions::Redo();
+  CADStaticFunctions::Redo();
   InvalidateRect(NULL, FALSE);
 }

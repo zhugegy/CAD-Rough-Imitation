@@ -1,16 +1,16 @@
 #include "stdafx.h"
 
-#include "CADShapeStaticFunctions.h"
+#include "CADStaticFunctions.h"
 #include "CADSimulation.h"
 
 #include "CADStorage.h"
-#include "ICADCommand.h"
-#include "CADCommandDeleteShapes.h"
+#include "CADCommand.h"
+#include "CADCommandGroupCmds.h"
 #include "CADCommandDeleteShape.h"
 
 #include <afxwin2.inl>
 
-int CCADShapeStaticFunctions::delete_shapes()
+int CADStaticFunctions::delete_shapes()
 {
   //遍历当前选择
   CCADStorage* pStorage = GET_SINGLE(CCADStorage);
@@ -21,7 +21,7 @@ int CCADShapeStaticFunctions::delete_shapes()
     return -1;
   }
 
-  CADCommandDeleteShapes* pCmdDeleteShapes = new CADCommandDeleteShapes;
+  CADCommandGroupCmds* pCmdDeleteShapes = new CADCommandGroupCmds;
 
   while (posSelected)
   {
@@ -34,7 +34,7 @@ int CCADShapeStaticFunctions::delete_shapes()
 
       CADCommandDeleteShape* pCmdDeleteShape = new CADCommandDeleteShape;
       pCmdDeleteShape->m_pShapeDeleted = pShape;
-      pCmdDeleteShapes->PushDeleteShapeCommand(pCmdDeleteShape);
+      pCmdDeleteShapes->PushCommand(pCmdDeleteShape);
     }
   }
 
@@ -48,7 +48,7 @@ int CCADShapeStaticFunctions::delete_shapes()
   return 0;
 }
 
-int CCADShapeStaticFunctions::unselect_all()
+int CADStaticFunctions::unselect_all()
 {
   //清空当前选择
   POSITION posSelected = (theApp.m_lstSelectedShapes).GetHeadPosition();
@@ -64,7 +64,7 @@ int CCADShapeStaticFunctions::unselect_all()
   return 0;
 }
 
-void CCADShapeStaticFunctions::Undo()
+void CADStaticFunctions::Undo()
 {
   CCADStorage* pStorage = GET_SINGLE(CCADStorage);
 
@@ -74,14 +74,14 @@ void CCADShapeStaticFunctions::Undo()
   }
 
   //撤消
-  ICADCommand* pCmd = pStorage->m_stkToUndo.top();
+  CADCommand* pCmd = pStorage->m_stkToUndo.top();
   pCmd->UnExecute(); 
   pStorage->m_stkToUndo.pop();
 
   pStorage->m_stkToRedo.push(pCmd);  //放入另一个栈中,等待被执行重做
 }
 
-void CCADShapeStaticFunctions::Redo()
+void CADStaticFunctions::Redo()
 {
   CCADStorage* pStorage = GET_SINGLE(CCADStorage);
 
@@ -92,7 +92,7 @@ void CCADShapeStaticFunctions::Redo()
   }
 
   //重做
-  ICADCommand* pCmd = pStorage->m_stkToRedo.top();
+  CADCommand* pCmd = pStorage->m_stkToRedo.top();
   pCmd->ReExecute();
   pStorage->m_stkToRedo.pop();
 

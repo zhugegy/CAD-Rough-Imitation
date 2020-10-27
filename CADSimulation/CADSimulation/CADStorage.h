@@ -6,7 +6,7 @@
 #include <stack>
 using namespace std;
 
-#include "ICADCommand.h"
+#include "CADCommand.h"
 
 class CCADStorage
 {
@@ -15,8 +15,8 @@ public:
 
   CList<CCADShape *, CCADShape *> m_lstShapes;  //保存所有的已存在形状
 
-  stack <ICADCommand *> m_stkToUndo; //等待撤消的动作
-  stack <ICADCommand *> m_stkToRedo; //等待重做的动作
+  stack <CADCommand *> m_stkToUndo; //等待撤消的动作
+  stack <CADCommand *> m_stkToRedo; //等待重做的动作
 
 private:
   CCADStorage();

@@ -4,7 +4,7 @@
 #include "GYSingleInstanceMacro.h"
 #include "CADSimulation.h"
 #include "CADCommandAddShape.h"
-#include "CADCommandDragShapes.h"
+#include "CADCommandGroupCmds.h"
 #include "CADCommandDragShape.h"
 
 extern CCADSimulationApp theApp;
@@ -89,7 +89,7 @@ int CCADShape::SaveThisShape(CPoint & objPoint)
       return -1;
     }
 
-    CADCommandDragShapes* pCmdDragShapes = new CADCommandDragShapes;
+    CADCommandGroupCmds* pCmdDragShapes = new CADCommandGroupCmds;
 
     while (posSelected)
     {
@@ -104,7 +104,7 @@ int CCADShape::SaveThisShape(CPoint & objPoint)
         pCmdDragShape->SetOffsets(this->m_objEndPoint.x - this->m_objBeginPoint.x,
           this->m_objEndPoint.y - this->m_objBeginPoint.y);
 
-        pCmdDragShapes->PushDragShapeCommand(pCmdDragShape);
+        pCmdDragShapes->PushCommand(pCmdDragShape);
       }
     }
 
@@ -192,8 +192,8 @@ int CCADShape::WhenSelected()
 {
   m_nPenWidth = 1;
   m_nPenStyle = PS_DASH;
-  m_nPenColor = RGB(255, 0, 0);
-  m_nBrushColor = RGB(255, 0, 0);
+  m_nPenColor = (COLORREF)RGB(255, 0, 0);
+  m_nBrushColor = (COLORREF)RGB(255, 0, 0);
 
   return 0;
 }
@@ -271,15 +271,33 @@ int CCADShape::SetPen(int PenWidth, int PenStyle, COLORREF PenColor)
   m_nPenStyleSwitch = PenStyle;
   m_nPenColorSwitch = PenColor;
 
+  m_nPenWidth = PenWidth;
+  m_nPenStyle = PenStyle;
+  m_nPenColor = PenColor;
+
   return 0;
 }
 
+
+int CCADShape::GetPen(int& PenWidth, int& PenStyle, COLORREF& PenColor)
+{
+  PenWidth = m_nPenWidthSwitch;
+  PenStyle = m_nPenStyleSwitch;
+  PenColor = m_nPenColorSwitch;
+
+  return 0;
+}
 
 int CCADShape::SetRotation(int nRotation)
 {
   m_nRotation = nRotation;
 
   return 0;
+}
+
+int CCADShape::GetRotation()
+{
+  return m_nRotation;
 }
 
 void CCADShape::Serialize(CArchive& archive)

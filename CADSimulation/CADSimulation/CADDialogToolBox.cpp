@@ -3,35 +3,43 @@
 
 #include "stdafx.h"
 #include "CADSimulation.h"
-#include "CadDrawToolBox.h"
+#include "CADDialogToolBox.h"
 #include "afxdialogex.h"
 
-#include "CADLineStyleDialog.h"
-#include "CADBrushStyleDialog.h"
-#include "CADCutomizeShape.h"
+#include "CADDialogLineStyle.h"
+#include "CADDialogBrushStyle.h"
+#include "CADDialogDrawCustomizeShape.h"
 #include "CADSimulationView.h"
 
-#include "CADShapeStaticFunctions.h"
+#include "CADStaticFunctions.h"
+
+#include "CADCommandRotateShape.h"
+#include "CADCommandGroupCmds.h"
+
+#include "CADCommandSetPenToShape.h"
+#include "CADCommandGroupCmds.h"
+
+#include "CADStorage.h"
 
 #include <fstream>
 
 
 // CCadDrawToolBox dialog
 
-IMPLEMENT_DYNAMIC(CCadDrawToolBox, CDialog)
+IMPLEMENT_DYNAMIC(CADDialogToolBox, CDialog)
 
-CCadDrawToolBox::CCadDrawToolBox(CWnd* pParent /*=NULL*/)
+CADDialogToolBox::CADDialogToolBox(CWnd* pParent /*=NULL*/)
 	: CDialog(IDD_DIALOG_DRAWTOOLBOX, pParent)
   , m_nShapeRotation(0)
 {
 
 }
 
-CCadDrawToolBox::~CCadDrawToolBox()
+CADDialogToolBox::~CADDialogToolBox()
 {
 }
 
-void CCadDrawToolBox::DoDataExchange(CDataExchange* pDX)
+void CADDialogToolBox::DoDataExchange(CDataExchange* pDX)
 {
   CDialog::DoDataExchange(pDX);
   DDX_Control(pDX, IDC_SLIDER1, m_sldCtrlRotation);
@@ -40,24 +48,24 @@ void CCadDrawToolBox::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CCadDrawToolBox, CDialog)
-  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_LINE, &CCadDrawToolBox::OnBnClickedButtonDrawToolBoxLine)
-  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_RECT, &CCadDrawToolBox::OnBnClickedButtonDrawToolBoxRect)
-  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_ELLIPSE, &CCadDrawToolBox::OnBnClickedButtonDrawToolBoxEllipse)
-  ON_BN_CLICKED(IDC_BUTTON_TOOL_BOX_SET_PEN, &CCadDrawToolBox::OnBnClickedButtonToolBoxSetPen)
-  ON_BN_CLICKED(IDC_BUTTON_TOOL_BOX_SET_BRUSH, &CCadDrawToolBox::OnBnClickedButtonToolBoxSetBrush)
-  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_CUSTOMIZE_SHAPE, &CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCustomizeShape)
-  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_CUSTOMIZED_SHAPE, &CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCustomizedShape)
-  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_SELECT, &CCadDrawToolBox::OnBnClickedButtonDrawToolBoxSelect)
-  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_CANCEL_SELECTION, &CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCancelSelection)
-  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_MOVE, &CCadDrawToolBox::OnBnClickedButtonDrawToolBoxMove)
+BEGIN_MESSAGE_MAP(CADDialogToolBox, CDialog)
+  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_LINE, &CADDialogToolBox::OnBnClickedButtonDrawToolBoxLine)
+  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_RECT, &CADDialogToolBox::OnBnClickedButtonDrawToolBoxRect)
+  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_ELLIPSE, &CADDialogToolBox::OnBnClickedButtonDrawToolBoxEllipse)
+  ON_BN_CLICKED(IDC_BUTTON_TOOL_BOX_SET_PEN, &CADDialogToolBox::OnBnClickedButtonToolBoxSetPen)
+  ON_BN_CLICKED(IDC_BUTTON_TOOL_BOX_SET_BRUSH, &CADDialogToolBox::OnBnClickedButtonToolBoxSetBrush)
+  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_CUSTOMIZE_SHAPE, &CADDialogToolBox::OnBnClickedButtonDrawToolBoxCustomizeShape)
+  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_CUSTOMIZED_SHAPE, &CADDialogToolBox::OnBnClickedButtonDrawToolBoxCustomizedShape)
+  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_SELECT, &CADDialogToolBox::OnBnClickedButtonDrawToolBoxSelect)
+  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_CANCEL_SELECTION, &CADDialogToolBox::OnBnClickedButtonDrawToolBoxCancelSelection)
+  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_MOVE, &CADDialogToolBox::OnBnClickedButtonDrawToolBoxMove)
   ON_WM_HSCROLL()
-  ON_BN_CLICKED(IDC_BUTTON_DRAW_BOX_ROTATE_LEFT, &CCadDrawToolBox::OnBnClickedButtonDrawBoxRotateLeft)
-  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_ROTATE_RIGHT, &CCadDrawToolBox::OnBnClickedButtonDrawToolBoxRotateRight)
-  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_CUSTOMIZED_SHAPE_SAVE, &CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCustomizedShapeSave)
-  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_CUSTOMIZED_SHAPE_LOAD, &CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCustomizedShapeLoad)
-  ON_CBN_SELCHANGE(IDC_COMBO_DRAW_TOOL_BOX_SELECT_CUSTOMIZED_SHAPE, &CCadDrawToolBox::OnSelchangeComboDrawToolBoxSelectCustomizedShape)
-  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_PENCIL, &CCadDrawToolBox::OnBnClickedButtonDrawToolBoxPencil)
+  ON_BN_CLICKED(IDC_BUTTON_DRAW_BOX_ROTATE_LEFT, &CADDialogToolBox::OnBnClickedButtonDrawBoxRotateLeft)
+  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_ROTATE_RIGHT, &CADDialogToolBox::OnBnClickedButtonDrawToolBoxRotateRight)
+  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_CUSTOMIZED_SHAPE_SAVE, &CADDialogToolBox::OnBnClickedButtonDrawToolBoxCustomizedShapeSave)
+  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_CUSTOMIZED_SHAPE_LOAD, &CADDialogToolBox::OnBnClickedButtonDrawToolBoxCustomizedShapeLoad)
+  ON_CBN_SELCHANGE(IDC_COMBO_DRAW_TOOL_BOX_SELECT_CUSTOMIZED_SHAPE, &CADDialogToolBox::OnSelchangeComboDrawToolBoxSelectCustomizedShape)
+  ON_BN_CLICKED(IDC_BUTTON_DRAW_TOOL_BOX_PENCIL, &CADDialogToolBox::OnBnClickedButtonDrawToolBoxPencil)
 END_MESSAGE_MAP()
 
 
@@ -65,32 +73,32 @@ END_MESSAGE_MAP()
 
 extern CCADSimulationApp theApp;
 
-void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxPencil()
+void CADDialogToolBox::OnBnClickedButtonDrawToolBoxPencil()
 {
   // TODO: Add your control notification handler code here
   theApp.SetLastShapeName(GetDlgItem(IDC_BUTTON_DRAW_TOOL_BOX_PENCIL));
 }
 
-void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxLine()
+void CADDialogToolBox::OnBnClickedButtonDrawToolBoxLine()
 {
   // TODO: Add your control notification handler code here
   theApp.SetLastShapeName(GetDlgItem(IDC_BUTTON_DRAW_TOOL_BOX_LINE));
 }
 
-void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxRect()
+void CADDialogToolBox::OnBnClickedButtonDrawToolBoxRect()
 {
   // TODO: Add your control notification handler code here
   theApp.SetLastShapeName(GetDlgItem(IDC_BUTTON_DRAW_TOOL_BOX_RECT));
 }
 
 
-void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxEllipse()
+void CADDialogToolBox::OnBnClickedButtonDrawToolBoxEllipse()
 {
   // TODO: Add your control notification handler code here
   theApp.SetLastShapeName(GetDlgItem(IDC_BUTTON_DRAW_TOOL_BOX_ELLIPSE));
 }
 
-void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCustomizedShape()
+void CADDialogToolBox::OnBnClickedButtonDrawToolBoxCustomizedShape()
 {
   // TODO: Add your control notification handler code here
   if (theApp.m_nCustomiezedShapePointCount == 0)
@@ -103,7 +111,7 @@ void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCustomizedShape()
 }
 
 //选择也当做画图来看
-void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxSelect()
+void CADDialogToolBox::OnBnClickedButtonDrawToolBoxSelect()
 {
   // TODO: Add your control notification handler code here
   theApp.SetLastShapeName(GetDlgItem(IDC_BUTTON_DRAW_TOOL_BOX_SELECT));
@@ -123,29 +131,29 @@ void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxSelect()
   theApp.m_pView->InvalidateRect(NULL, FALSE);
 }
 
-void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCancelSelection()
+void CADDialogToolBox::OnBnClickedButtonDrawToolBoxCancelSelection()
 {
   // TODO: Add your control notification handler code here
   theApp.SetLastShapeName(GetDlgItem(IDC_BUTTON_DRAW_TOOL_BOX_CANCEL_SELECTION));
 
-  CCADShapeStaticFunctions::unselect_all();
+  CADStaticFunctions::unselect_all();
 
   //通知窗口进行重绘
   theApp.m_pView->InvalidateRect(NULL, FALSE);
 }
 
-void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxMove()
+void CADDialogToolBox::OnBnClickedButtonDrawToolBoxMove()
 {
   // TODO: Add your control notification handler code here
   theApp.SetLastShapeName(GetDlgItem(IDC_BUTTON_DRAW_TOOL_BOX_MOVE));
 
 }
 
-void CCadDrawToolBox::OnBnClickedButtonToolBoxSetPen()
+void CADDialogToolBox::OnBnClickedButtonToolBoxSetPen()
 {
   // TODO: Add your control notification handler code here
 
-  CCADLineStyleDialog dlg;
+  CADDialogLineStyle dlg;
   if (IDOK == dlg.DoModal())
   {
     theApp.m_nPenWidth = dlg.m_nPenWidth;
@@ -169,15 +177,50 @@ void CCadDrawToolBox::OnBnClickedButtonToolBoxSetPen()
 
     //遍历当前选择
     POSITION posSelected = (theApp.m_lstSelectedShapes).GetHeadPosition();
+
+    if (posSelected == NULL)
+    {
+      return;
+    }
+
+    CCADStorage* pStorage = GET_SINGLE(CCADStorage);
+    CADCommandGroupCmds* pCmdSetPenToShapes = new CADCommandGroupCmds;
+
+
     while (posSelected)
     {
       CCADShape * pShape = (theApp.m_lstSelectedShapes).GetNext(posSelected);
 
-      pShape->SetPen(theApp.m_nPenWidth, theApp.m_nPenStyle, 
-        theApp.m_nPenColor);
+      if (pShape)
+      {
+        CADCommandSetPenToShape* pCmdSetPenToShape = new CADCommandSetPenToShape;
+        pCmdSetPenToShape->m_pShapeSetPenTo = pShape;
 
-      pShape->WhenUnselected();
+        int nPenWidth;
+        int nPenStyle;
+        COLORREF  colPenColor;
+        pShape->GetPen(nPenWidth, nPenStyle, colPenColor);
+
+        pCmdSetPenToShape->m_nPenWidthBefore = nPenWidth;
+        pCmdSetPenToShape->m_nPenStyleBefore = nPenStyle;
+        pCmdSetPenToShape->m_nPenColorBefore = colPenColor;
+
+
+        pShape->SetPen(theApp.m_nPenWidth, theApp.m_nPenStyle,
+          theApp.m_nPenColor);
+
+        pCmdSetPenToShape->m_nPenWidthAfter = theApp.m_nPenWidth;
+        pCmdSetPenToShape->m_nPenStyleAfter = theApp.m_nPenStyle;
+        pCmdSetPenToShape->m_nPenColorAfter = theApp.m_nPenColor;
+
+        pCmdSetPenToShapes->PushCommand(pCmdSetPenToShape);
+
+        pShape->WhenUnselected();
+      }
     }
+
+    ASSERT(pCmdSetPenToShapes->GetCommandCount() != 0);
+    pStorage->m_stkToUndo.push(pCmdSetPenToShapes);
 
     (theApp.m_lstSelectedShapes).RemoveAll();
 
@@ -192,10 +235,10 @@ void CCadDrawToolBox::OnBnClickedButtonToolBoxSetPen()
 //   pTmp->ShowWindow(SW_SHOW);
 }
 
-void CCadDrawToolBox::OnBnClickedButtonToolBoxSetBrush()
+void CADDialogToolBox::OnBnClickedButtonToolBoxSetBrush()
 {
   // TODO: Add your control notification handler code here
-  CCADBrushStyleDialog dlg;
+  CADDialogBrushStyle dlg;
 
   if (IDOK == dlg.DoModal())
   {
@@ -231,10 +274,10 @@ void CCadDrawToolBox::OnBnClickedButtonToolBoxSetBrush()
 }
 
 
-void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCustomizeShape()
+void CADDialogToolBox::OnBnClickedButtonDrawToolBoxCustomizeShape()
 {
   // TODO: Add your control notification handler code here
-  CCADCutomizeShape dlg;
+  CADDialogDrawCustomizeShape dlg;
 
   if (IDOK == dlg.DoModal())
   {
@@ -258,7 +301,7 @@ void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCustomizeShape()
   }
 }
 
-BOOL CCadDrawToolBox::OnInitDialog()
+BOOL CADDialogToolBox::OnInitDialog()
 {
   CDialog::OnInitDialog();
 
@@ -275,7 +318,7 @@ BOOL CCadDrawToolBox::OnInitDialog()
 }
 
 
-void CCadDrawToolBox::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
+void CADDialogToolBox::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
   // TODO: Add your message handler code here and/or call default
    
@@ -289,7 +332,7 @@ void CCadDrawToolBox::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 }
 
 
-void CCadDrawToolBox::OnBnClickedButtonDrawBoxRotateLeft()
+void CADDialogToolBox::OnBnClickedButtonDrawBoxRotateLeft()
 {
   // TODO: Add your control notification handler code here
   int nRotationResult = m_sldCtrlRotation.GetPos();
@@ -310,7 +353,7 @@ void CCadDrawToolBox::OnBnClickedButtonDrawBoxRotateLeft()
 }
 
 
-void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxRotateRight()
+void CADDialogToolBox::OnBnClickedButtonDrawToolBoxRotateRight()
 {
   // TODO: Add your control notification handler code here
   int nRotationResult = m_sldCtrlRotation.GetPos();
@@ -331,18 +374,39 @@ void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxRotateRight()
 }
 
 
-int CCadDrawToolBox::RotateTheShape()
+int CADDialogToolBox::RotateTheShape()
 {
   int nRotationResult = m_sldCtrlRotation.GetPos();
 
   //遍历当前选择
   POSITION posSelected = (theApp.m_lstSelectedShapes).GetHeadPosition();
+
+  if (posSelected == NULL)
+  {
+    return -1;
+  }
+
+  CCADStorage* pStorage = GET_SINGLE(CCADStorage);
+  CADCommandGroupCmds* pCmdRotateShapes = new CADCommandGroupCmds;
+
   while (posSelected)
   {
     CCADShape * pShape = (theApp.m_lstSelectedShapes).GetNext(posSelected);
 
-    pShape->SetRotation(nRotationResult);
+    if (pShape)
+    {
+      CADCommandRotateShape* pCmdRotateShape = new CADCommandRotateShape;
+      pCmdRotateShape->m_pShapeRotated = pShape;
+      pCmdRotateShape->m_nRotationDegreeBefore = pShape->GetRotation();
+
+      pShape->SetRotation(nRotationResult);
+      pCmdRotateShape->m_nRotationDegreeAfter = nRotationResult;
+      pCmdRotateShapes->PushCommand(pCmdRotateShape);
+    }
   }
+
+  ASSERT(pCmdRotateShapes->GetCommandCount() != 0);
+  pStorage->m_stkToUndo.push(pCmdRotateShapes);
 
   //通知窗口进行重绘
   theApp.m_pView->InvalidateRect(NULL, FALSE);
@@ -351,7 +415,7 @@ int CCadDrawToolBox::RotateTheShape()
 }
 
 
-void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCustomizedShapeSave()
+void CADDialogToolBox::OnBnClickedButtonDrawToolBoxCustomizedShapeSave()
 {
   // TODO: Add your control notification handler code here
   if (theApp.m_nCustomiezedShapePointCount == 0)
@@ -376,7 +440,7 @@ void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCustomizedShapeSave()
 }
 
 
-void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCustomizedShapeLoad()
+void CADDialogToolBox::OnBnClickedButtonDrawToolBoxCustomizedShapeLoad()
 {
   // TODO: Add your control notification handler code here
   CFileDialog dlg(TRUE);
@@ -394,7 +458,7 @@ void CCadDrawToolBox::OnBnClickedButtonDrawToolBoxCustomizedShapeLoad()
   }
 }
 
-void CCadDrawToolBox::OnSelchangeComboDrawToolBoxSelectCustomizedShape()
+void CADDialogToolBox::OnSelchangeComboDrawToolBoxSelectCustomizedShape()
 {
   // TODO: Add your control notification handler code here
   int n = m_ctlComboSelectCustomizedShape.GetCurSel();

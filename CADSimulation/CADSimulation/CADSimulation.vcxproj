@@ -185,15 +185,16 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CADBrushStyleDialog.h" />
+    <ClInclude Include="CADDialogBrushStyle.h" />
     <ClInclude Include="CADCommandAddShape.h" />
     <ClInclude Include="CADCommandDeleteShape.h" />
-    <ClInclude Include="CADCommandDeleteShapes.h" />
+    <ClInclude Include="CADCommandGroupCmds.h" />
     <ClInclude Include="CADCommandDragShape.h" />
-    <ClInclude Include="CADCommandDragShapes.h" />
-    <ClInclude Include="CADCutomizeShape.h" />
-    <ClInclude Include="CadDrawToolBox.h" />
-    <ClInclude Include="CADLineStyleDialog.h" />
+    <ClInclude Include="CADCommandRotateShape.h" />
+    <ClInclude Include="CADCommandSetPenToShape.h" />
+    <ClInclude Include="CADDialogDrawCustomizeShape.h" />
+    <ClInclude Include="CADDialogToolBox.h" />
+    <ClInclude Include="CADDialogLineStyle.h" />
     <ClInclude Include="CADShape.h" />
     <ClInclude Include="CADShapeDrag.h" />
     <ClInclude Include="CADShapeEllipse.h" />
@@ -203,31 +204,32 @@
     <ClInclude Include="CADShapePolygon.h" />
     <ClInclude Include="CADShapeRect.h" />
     <ClInclude Include="CADShapeSelection.h" />
-    <ClInclude Include="CADShapeStaticFunctions.h" />
+    <ClInclude Include="CADStaticFunctions.h" />
     <ClInclude Include="CADSimulation.h" />
     <ClInclude Include="CADSimulationDoc.h" />
     <ClInclude Include="CADSimulationView.h" />
     <ClInclude Include="CADStorage.h" />
-    <ClInclude Include="CADToolBoxView.h" />
-    <ClInclude Include="DrawContext.h" />
+    <ClInclude Include="CADViewToolBox.h" />
+    <ClInclude Include="CADDrawContext.h" />
     <ClInclude Include="GYSingleInstanceDedicatedClass.h" />
     <ClInclude Include="GYSingleInstanceMacro.h" />
-    <ClInclude Include="ICADCommand.h" />
+    <ClInclude Include="CADCommand.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CADBrushStyleDialog.cpp" />
+    <ClCompile Include="CADDialogBrushStyle.cpp" />
     <ClCompile Include="CADCommandAddShape.cpp" />
     <ClCompile Include="CADCommandDeleteShape.cpp" />
-    <ClCompile Include="CADCommandDeleteShapes.cpp" />
+    <ClCompile Include="CADCommandGroupCmds.cpp" />
     <ClCompile Include="CADCommandDragShape.cpp" />
-    <ClCompile Include="CADCommandDragShapes.cpp" />
-    <ClCompile Include="CADCutomizeShape.cpp" />
-    <ClCompile Include="CadDrawToolBox.cpp" />
-    <ClCompile Include="CADLineStyleDialog.cpp" />
+    <ClCompile Include="CADCommandRotateShape.cpp" />
+    <ClCompile Include="CADCommandSetPenToShape.cpp" />
+    <ClCompile Include="CADDialogDrawCustomizeShape.cpp" />
+    <ClCompile Include="CADDialogToolBox.cpp" />
+    <ClCompile Include="CADDialogLineStyle.cpp" />
     <ClCompile Include="CADShape.cpp" />
     <ClCompile Include="CADShapeDrag.cpp" />
     <ClCompile Include="CADShapeEllipse.cpp" />
@@ -237,15 +239,15 @@
     <ClCompile Include="CADShapePolygon.cpp" />
     <ClCompile Include="CADShapeRect.cpp" />
     <ClCompile Include="CADShapeSelection.cpp" />
-    <ClCompile Include="CADShapeStaticFunctions.cpp" />
+    <ClCompile Include="CADStaticFunctions.cpp" />
     <ClCompile Include="CADSimulation.cpp" />
     <ClCompile Include="CADSimulationDoc.cpp" />
     <ClCompile Include="CADSimulationView.cpp" />
     <ClCompile Include="CADStorage.cpp" />
-    <ClCompile Include="CADToolBoxView.cpp" />
-    <ClCompile Include="DrawContext.cpp" />
+    <ClCompile Include="CADViewToolBox.cpp" />
+    <ClCompile Include="CADDrawContext.cpp" />
     <ClCompile Include="GYSingleInstanceDedicatedClass.cpp" />
-    <ClCompile Include="ICADCommand.cpp" />
+    <ClCompile Include="CADCommand.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

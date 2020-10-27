@@ -15,7 +15,7 @@
 
 #include "CADShape.h"
 #include "CADSimulationView.h"
-#include "CADCutomizeShape.h"
+#include "CADDialogDrawCustomizeShape.h"
 
 class CCADSimulationApp : public CWinAppEx
 {

@@ -3,13 +3,15 @@
 
 #include "CADShape.h"
 
-class CADCommandDeleteShape :
+class CADCommandRotateShape :
     public CADCommand
 {
 public:
   /*virtual*/ void UnExecute();
   /*virtual*/ void ReExecute();
 
-  CCADShape* m_pShapeDeleted;
+  CCADShape* m_pShapeRotated;
+  int m_nRotationDegreeBefore;
+  int m_nRotationDegreeAfter;
 };
 

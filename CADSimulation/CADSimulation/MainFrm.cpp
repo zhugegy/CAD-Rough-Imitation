@@ -7,10 +7,10 @@
 
 #include "MainFrm.h"
 
-#include "CADToolBoxView.h"
+#include "CADViewToolBox.h"
 #include "CADSimulationView.h"
 
-#include "CADLineStyleDialog.h"
+#include "CADDialogLineStyle.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -188,7 +188,7 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
   // TODO: Add your specialized code here and/or call the base class
   m_splitter.CreateStatic(this, 1, 2);
 
-  m_splitter.CreateView(0, 0, RUNTIME_CLASS(CCADToolBoxView),
+  m_splitter.CreateView(0, 0, RUNTIME_CLASS(CADViewToolBox),
     CSize(140, 1800), pContext);
 
   m_splitter.CreateView(0, 1, RUNTIME_CLASS(CCADSimulationView),

@@ -39,9 +39,6 @@
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DrawContext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CADShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -57,28 +54,13 @@
     <ClInclude Include="CADStorage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CadDrawToolBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CADShapeRect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CADToolBoxView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CADShapeEllipse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CADLineStyleDialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CADBrushStyleDialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CADShapePolygon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CADCutomizeShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CADShapeSelection.h">
@@ -90,19 +72,10 @@
     <ClInclude Include="CADShapePencil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CADShapeStaticFunctions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CADCommandAddShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ICADCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CADShapeNull.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CADCommandDeleteShapes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CADCommandDeleteShape.h">
@@ -111,7 +84,37 @@
     <ClInclude Include="CADCommandDragShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CADCommandDragShapes.h">
+    <ClInclude Include="CADCommandRotateShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CADCommandSetPenToShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CADCommandGroupCmds.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CADCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CADDialogBrushStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CADDialogDrawCustomizeShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CADDialogToolBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CADDialogLineStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CADStaticFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CADViewToolBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CADDrawContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -131,9 +134,6 @@
     <ClCompile Include="CADSimulationView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DrawContext.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CADShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -146,28 +146,13 @@
     <ClCompile Include="CADStorage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CadDrawToolBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CADShapeRect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CADToolBoxView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CADShapeEllipse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CADLineStyleDialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CADBrushStyleDialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CADShapePolygon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CADCutomizeShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CADShapeSelection.cpp">
@@ -179,19 +164,10 @@
     <ClCompile Include="CADShapePencil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CADShapeStaticFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CADCommandAddShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ICADCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CADShapeNull.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CADCommandDeleteShapes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CADCommandDeleteShape.cpp">
@@ -200,7 +176,37 @@
     <ClCompile Include="CADCommandDragShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CADCommandDragShapes.cpp">
+    <ClCompile Include="CADCommandRotateShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADCommandSetPenToShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADCommandGroupCmds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADDialogBrushStyle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADDialogDrawCustomizeShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADDialogToolBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADDialogLineStyle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADStaticFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADViewToolBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CADDrawContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

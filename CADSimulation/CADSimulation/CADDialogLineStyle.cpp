@@ -3,15 +3,15 @@
 
 #include "stdafx.h"
 #include "CADSimulation.h"
-#include "CADLineStyleDialog.h"
+#include "CADDialogLineStyle.h"
 #include "afxdialogex.h"
 
 
 // CCADLineStyleDialog dialog
 
-IMPLEMENT_DYNAMIC(CCADLineStyleDialog, CDialog)
+IMPLEMENT_DYNAMIC(CADDialogLineStyle, CDialog)
 
-CCADLineStyleDialog::CCADLineStyleDialog(CWnd* pParent /*=NULL*/)
+CADDialogLineStyle::CADDialogLineStyle(CWnd* pParent /*=NULL*/)
 	: CDialog(IDD_DIALOG_LINESTYLE, pParent)
   , m_nPenWidth(0)
   , m_nPenStyle(0)
@@ -19,11 +19,11 @@ CCADLineStyleDialog::CCADLineStyleDialog(CWnd* pParent /*=NULL*/)
 
 }
 
-CCADLineStyleDialog::~CCADLineStyleDialog()
+CADDialogLineStyle::~CADDialogLineStyle()
 {
 }
 
-void CCADLineStyleDialog::DoDataExchange(CDataExchange* pDX)
+void CADDialogLineStyle::DoDataExchange(CDataExchange* pDX)
 {
   CDialog::DoDataExchange(pDX);
   DDX_Control(pDX, IDC_SLIDER1, m_sldCtrl);
@@ -33,10 +33,10 @@ void CCADLineStyleDialog::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CCADLineStyleDialog, CDialog)
-  ON_BN_CLICKED(IDC_BUTTON_OK, &CCADLineStyleDialog::OnBnClickedButtonOk)
-  ON_BN_CLICKED(IDC_BUTTON_LINE_STYLE_CANCEL, &CCADLineStyleDialog::OnBnClickedButtonLineStyleCancel)
-  ON_BN_CLICKED(IDC_BUTTON_LINE_STYLE_COLOR, &CCADLineStyleDialog::OnBnClickedButtonLineStyleColor)
+BEGIN_MESSAGE_MAP(CADDialogLineStyle, CDialog)
+  ON_BN_CLICKED(IDC_BUTTON_OK, &CADDialogLineStyle::OnBnClickedButtonOk)
+  ON_BN_CLICKED(IDC_BUTTON_LINE_STYLE_CANCEL, &CADDialogLineStyle::OnBnClickedButtonLineStyleCancel)
+  ON_BN_CLICKED(IDC_BUTTON_LINE_STYLE_COLOR, &CADDialogLineStyle::OnBnClickedButtonLineStyleColor)
   ON_WM_CREATE()
   ON_WM_HSCROLL()
 //   ON_BN_CLICKED(IDC_RADIO1, &CCADLineStyleDialog::OnBnClickedRadio1)
@@ -48,14 +48,14 @@ END_MESSAGE_MAP()
 // CCADLineStyleDialog message handlers
 
 
-void CCADLineStyleDialog::OnBnClickedButtonOk()
+void CADDialogLineStyle::OnBnClickedButtonOk()
 {
   // TODO: Add your control notification handler code here
   CDialog::OnOK();
 }
 
 
-void CCADLineStyleDialog::OnBnClickedButtonLineStyleCancel()
+void CADDialogLineStyle::OnBnClickedButtonLineStyleCancel()
 {
   // TODO: Add your control notification handler code here
   CDialog::OnCancel();
@@ -63,7 +63,7 @@ void CCADLineStyleDialog::OnBnClickedButtonLineStyleCancel()
 
 
 
-void CCADLineStyleDialog::OnBnClickedButtonLineStyleColor()
+void CADDialogLineStyle::OnBnClickedButtonLineStyleColor()
 {
   // TODO: Add your control notification handler code here
   CColorDialog dlg;
@@ -82,7 +82,7 @@ void CCADLineStyleDialog::OnBnClickedButtonLineStyleColor()
 extern CCADSimulationApp theApp;
 
 //这里不能初始化控件，会崩溃，教训
-int CCADLineStyleDialog::OnCreate(LPCREATESTRUCT lpCreateStruct)
+int CADDialogLineStyle::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
   if (CDialog::OnCreate(lpCreateStruct) == -1)
     return -1;
@@ -98,7 +98,7 @@ int CCADLineStyleDialog::OnCreate(LPCREATESTRUCT lpCreateStruct)
   return 0;
 }
 
-BOOL CCADLineStyleDialog::OnInitDialog()
+BOOL CADDialogLineStyle::OnInitDialog()
 {
   CDialog::OnInitDialog();
 
@@ -132,7 +132,7 @@ BOOL CCADLineStyleDialog::OnInitDialog()
                 // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CCADLineStyleDialog::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
+void CADDialogLineStyle::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
   // TODO: Add your message handler code here and/or call default
   UpdateData(TRUE);

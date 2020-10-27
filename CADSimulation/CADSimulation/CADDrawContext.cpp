@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "DrawContext.h"
+#include "CADDrawContext.h"
 
 #include "CADShapePencil.h"
 #include "CADShapeLine.h"
@@ -13,14 +13,14 @@
 
 extern CCADSimulationApp theApp;
 
-CDrawContext::CDrawContext()
+CADDrawContext::CADDrawContext()
 {
   m_pobjCurrentShape = new CCADShape;
   //m_pobjCurrentShape = new CCADShapeLine;
 
 }
 
-CDrawContext::CDrawContext(CString &strShapeName)
+CADDrawContext::CADDrawContext(CString &strShapeName)
 {
 //   if (m_pobjCurrentShape != NULL)
 //   {
@@ -31,7 +31,7 @@ CDrawContext::CDrawContext(CString &strShapeName)
 //   SetShape(strShapeName);
 }
 
-CDrawContext::~CDrawContext()
+CADDrawContext::~CADDrawContext()
 {
 //   if (m_pobjCurrentShape != NULL)
 //   {
@@ -41,7 +41,7 @@ CDrawContext::~CDrawContext()
 }
 
 
-int CDrawContext::SetShapeContext()
+int CADDrawContext::SetShapeContext()
 {
   if (*(theApp.GetLastShapeName()) == _T("Ç¦±Ê"))
   {
@@ -97,26 +97,26 @@ int CDrawContext::SetShapeContext()
   return 0;
 }
 
-CCADShape* CDrawContext::GetShapeContext()
+CCADShape* CADDrawContext::GetShapeContext()
 {
   return m_pobjCurrentShape;
 }
 
-int CDrawContext::TemporarilyNullCurrentShapeContext()
+int CADDrawContext::TemporarilyNullCurrentShapeContext()
 {
   m_pobjCurrentShape = new CCADShapeNull;
 
   return 0;
 }
 
-int CDrawContext::RestorePreviousShapeContext(CCADShape* pPrevious)
+int CADDrawContext::RestorePreviousShapeContext(CCADShape* pPrevious)
 {
   m_pobjCurrentShape = pPrevious;
 
   return 0;
 }
 
-int CDrawContext::OnLButtonDown(CPoint & objPoint)
+int CADDrawContext::OnLButtonDown(CPoint & objPoint)
 {
   SetShapeContext();
   m_pobjCurrentShape->SetBeginPoint(objPoint);
@@ -124,14 +124,14 @@ int CDrawContext::OnLButtonDown(CPoint & objPoint)
   return 0;
 }
 
-int CDrawContext::OnMouseMove(CPoint & objPoint)
+int CADDrawContext::OnMouseMove(CPoint & objPoint)
 {
   m_pobjCurrentShape->SetEndPoint(objPoint);
 
   return 0;
 }
 
-int CDrawContext::OnLButtonUp(CPoint & objPoint)
+int CADDrawContext::OnLButtonUp(CPoint & objPoint)
 {
   m_pobjCurrentShape->SetEndPoint(objPoint);
   m_pobjCurrentShape->SaveThisShape(objPoint);
@@ -141,7 +141,7 @@ int CDrawContext::OnLButtonUp(CPoint & objPoint)
   return 0;
 }
 
-int CDrawContext::Draw(HWND hWnd, CDC * pDC)
+int CADDrawContext::Draw(HWND hWnd, CDC * pDC)
 {
   m_pobjCurrentShape->DrawTheBigPicture(hWnd, pDC);
 

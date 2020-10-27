@@ -3,15 +3,15 @@
 
 // CCADToolBoxView view
 
-class CCadDrawToolBox;
+class CADDialogToolBox;
 
-class CCADToolBoxView : public CView
+class CADViewToolBox : public CView
 {
-	DECLARE_DYNCREATE(CCADToolBoxView)
+	DECLARE_DYNCREATE(CADViewToolBox)
 
 protected:
-	CCADToolBoxView();           // protected constructor used by dynamic creation
-	virtual ~CCADToolBoxView();
+	CADViewToolBox();           // protected constructor used by dynamic creation
+	virtual ~CADViewToolBox();
 
 public:
 	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
@@ -29,7 +29,7 @@ public:
   afx_msg void OnSizing(UINT fwSide, LPRECT pRect);
 
 private:
-  CCadDrawToolBox *m_pToolBoxDlg;
+  CADDialogToolBox *m_pToolBoxDlg;
   RECT m_rcToolBoxDlg;
 };
 

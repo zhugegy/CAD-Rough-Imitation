@@ -5,13 +5,13 @@
 
 // CCADLineStyleDialog dialog
 
-class CCADLineStyleDialog : public CDialog
+class CADDialogLineStyle : public CDialog
 {
-	DECLARE_DYNAMIC(CCADLineStyleDialog)
+	DECLARE_DYNAMIC(CADDialogLineStyle)
 
 public:
-	CCADLineStyleDialog(CWnd* pParent = NULL);   // standard constructor
-	virtual ~CCADLineStyleDialog();
+	CADDialogLineStyle(CWnd* pParent = NULL);   // standard constructor
+	virtual ~CADDialogLineStyle();
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME

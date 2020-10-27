@@ -8,13 +8,13 @@
 #define CUSTOMIZE_SHAPE_MAX_POINTS 10
 
 
-class CCADCutomizeShape : public CDialog
+class CADDialogDrawCustomizeShape : public CDialog
 {
-	DECLARE_DYNAMIC(CCADCutomizeShape)
+	DECLARE_DYNAMIC(CADDialogDrawCustomizeShape)
 
 public:
-	CCADCutomizeShape(CWnd* pParent = NULL);   // standard constructor
-	virtual ~CCADCutomizeShape();
+	CADDialogDrawCustomizeShape(CWnd* pParent = NULL);   // standard constructor
+	virtual ~CADDialogDrawCustomizeShape();
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME

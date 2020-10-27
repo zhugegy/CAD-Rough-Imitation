@@ -5,13 +5,13 @@
 
 // CCadDrawToolBox dialog
 
-class CCadDrawToolBox : public CDialog
+class CADDialogToolBox : public CDialog
 {
-	DECLARE_DYNAMIC(CCadDrawToolBox)
+	DECLARE_DYNAMIC(CADDialogToolBox)
 
 public:
-	CCadDrawToolBox(CWnd* pParent = NULL);   // standard constructor
-	virtual ~CCadDrawToolBox();
+	CADDialogToolBox(CWnd* pParent = NULL);   // standard constructor
+	virtual ~CADDialogToolBox();
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME

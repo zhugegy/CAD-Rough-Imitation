@@ -1,6 +1,6 @@
 #pragma once
 #include "CADShape.h"
-class CCADShapeStaticFunctions :
+class CADStaticFunctions :
   public CCADShape
 {
 public:

@@ -52,7 +52,9 @@ public:
   int AfterBeingDragged();
   int SetBrush(COLORREF color);
   int SetPen(int PenWidth, int PenStyle, COLORREF PenColor);
+  int GetPen(int & PenWidth, int & PenStyle, COLORREF & PenColor);
   int SetRotation(int nRotation);
+  int GetRotation();
 
   void Serialize(CArchive& archive);
 

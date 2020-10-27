@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CADShapePolygon.h"
 
-#include "CADCutomizeShape.h"
+#include "CADDialogDrawCustomizeShape.h"
 
 IMPLEMENT_SERIAL(CCADShapePolygon, CObject, 1)
 

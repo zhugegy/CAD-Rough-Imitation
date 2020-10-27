@@ -3,25 +3,25 @@
 
 #include "stdafx.h"
 #include "CADSimulation.h"
-#include "CADToolBoxView.h"
+#include "CADViewToolBox.h"
 
-#include "CadDrawToolBox.h"
+#include "CADDialogToolBox.h"
 
 
 // CCADToolBoxView
 
-IMPLEMENT_DYNCREATE(CCADToolBoxView, CView)
+IMPLEMENT_DYNCREATE(CADViewToolBox, CView)
 
-CCADToolBoxView::CCADToolBoxView()
+CADViewToolBox::CADViewToolBox()
 {
 
 }
 
-CCADToolBoxView::~CCADToolBoxView()
+CADViewToolBox::~CADViewToolBox()
 {
 }
 
-BEGIN_MESSAGE_MAP(CCADToolBoxView, CView)
+BEGIN_MESSAGE_MAP(CADViewToolBox, CView)
   ON_WM_CREATE()
   ON_WM_SIZING()
 END_MESSAGE_MAP()
@@ -29,7 +29,7 @@ END_MESSAGE_MAP()
 
 // CCADToolBoxView drawing
 
-void CCADToolBoxView::OnDraw(CDC* pDC)
+void CADViewToolBox::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
 	// TODO: add draw code here
@@ -39,13 +39,13 @@ void CCADToolBoxView::OnDraw(CDC* pDC)
 // CCADToolBoxView diagnostics
 
 #ifdef _DEBUG
-void CCADToolBoxView::AssertValid() const
+void CADViewToolBox::AssertValid() const
 {
 	CView::AssertValid();
 }
 
 #ifndef _WIN32_WCE
-void CCADToolBoxView::Dump(CDumpContext& dc) const
+void CADViewToolBox::Dump(CDumpContext& dc) const
 {
 	CView::Dump(dc);
 }
@@ -54,7 +54,7 @@ void CCADToolBoxView::Dump(CDumpContext& dc) const
 
 
 // CCADToolBoxView message handlers
-int CCADToolBoxView::OnCreate(LPCREATESTRUCT lpCreateStruct)
+int CADViewToolBox::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
   if (CView::OnCreate(lpCreateStruct) == -1)
     return -1;
@@ -62,7 +62,7 @@ int CCADToolBoxView::OnCreate(LPCREATESTRUCT lpCreateStruct)
   // TODO:  Add your specialized creation code here
   //GetWindowRect(&m_rcToolBoxDlg);
   
-  m_pToolBoxDlg = new CCadDrawToolBox;
+  m_pToolBoxDlg = new CADDialogToolBox;
   m_pToolBoxDlg->Create(IDD_DIALOG_DRAWTOOLBOX, this);
   //m_pToolBoxDlg->MoveWindow(&m_rcToolBoxDlg);
   m_pToolBoxDlg->ShowWindow(SW_SHOW);
@@ -71,7 +71,7 @@ int CCADToolBoxView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 }
 
 
-void CCADToolBoxView::OnSizing(UINT fwSide, LPRECT pRect)
+void CADViewToolBox::OnSizing(UINT fwSide, LPRECT pRect)
 {
   CView::OnSizing(fwSide, pRect);
 

@@ -1,10 +1,10 @@
 #pragma once
-#include "ICADCommand.h"
+#include "CADCommand.h"
 
 #include "CADShape.h"
 
 class CADCommandAddShape :
-    public ICADCommand
+    public CADCommand
 {
 public:
   /*virtual*/ void UnExecute();

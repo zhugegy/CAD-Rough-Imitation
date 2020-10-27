@@ -2,13 +2,13 @@
 
 #include "CADShape.h"
 
-class CDrawContext
+class CADDrawContext
 {
 public:
-  CDrawContext();
-  CDrawContext(CString &strShapeName);
+  CADDrawContext();
+  CADDrawContext(CString &strShapeName);
 
-  virtual ~CDrawContext();
+  virtual ~CADDrawContext();
 private:
   CCADShape* m_pobjCurrentShape;
 public:

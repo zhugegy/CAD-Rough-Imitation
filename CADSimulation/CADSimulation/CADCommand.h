@@ -1,5 +1,5 @@
 #pragma once
-class ICADCommand
+class CADCommand
 {
 public:
   virtual void UnExecute() = 0;

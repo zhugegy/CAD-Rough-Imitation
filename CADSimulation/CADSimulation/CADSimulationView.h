@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "DrawContext.h"
+#include "CADDrawContext.h"
 #include "CADSimulationDoc.h"
 
 class CCADSimulationView : public CView
@@ -48,7 +48,7 @@ public:
   afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 
 private:
-  CDrawContext *m_pobjDrawContext;
+  CADDrawContext *m_pobjDrawContext;
   bool m_bIsDrawing;
 public:
   afx_msg void OnCadToolbarLine();
