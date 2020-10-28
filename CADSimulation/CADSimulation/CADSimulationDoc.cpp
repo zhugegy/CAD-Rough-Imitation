@@ -75,6 +75,7 @@ void CCADSimulationDoc::Serialize(CArchive& ar)
 	}
 	else
 	{
+		(pStorage->m_lstShapes).RemoveAll();
 		// TODO: add loading code here
     int nCnt = 0;
     ar >> nCnt;
