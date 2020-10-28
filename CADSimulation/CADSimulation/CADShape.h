@@ -63,6 +63,7 @@ public:
 
   void Serialize(CArchive& archive);
 
+  // replacement CObejct->GetRunTimeClass()
   virtual RealName RevealActualType();
 
   CPoint GetBeginPointBeforeDragged();
